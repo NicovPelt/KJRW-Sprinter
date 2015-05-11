@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="50" tilewidth="64" tileheight="64" nextobjectid="3">
+ <tileset firstgid="1" name="Tiles" tilewidth="64" tileheight="64">
+  <image source="../images/Tileset.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="200" height="50">
+  <properties>
+   <property name="solid" value="false"/>
+   <property name="tileset" value="Tiles"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1TEOgCAMBVAE739mHTBhkMQyYJT3kh8WIAxtSQkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBVtZ3LN/vJbAP7qmrUlPZu1vf3Re9ozdyk1uVl78UfwZSO9A7O09RmZt6N1rR9YnR4AAAAAAAAAAAAAACDqAIj4AIY=
+  </data>
+ </layer>
+ <objectgroup name="PlayerStart">
+  <object id="1" name="start" type="player_start" x="15.3499" y="2015.99" width="46.4175" height="60.6998"/>
+ </objectgroup>
+ <objectgroup name="DeathZone">
+  <object id="2" name="deathZone" type="death_zone" x="4.96032" y="2507.44" width="4929.57" height="61.8847"/>
+ </objectgroup>
+</map>
