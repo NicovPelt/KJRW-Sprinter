@@ -22,8 +22,8 @@ class Level extends TiledMap
 	// points to the folder where all the tilesets should be stored
 	private inline static var c_PATH_LEVEL_TILESHEETS = "assets/images/";
 	
-	//groups to contain different tile layers. Remember to add when foreground and/or background is added
-	public var platforms:FlxGroup;
+	//groups to contain different tile layers. Remember to add groups when foreground and/or background is added
+	private var platforms:FlxGroup;
 	private var collidableTileLayers:Array<FlxTilemap>;
 	
 	public function new(level:Dynamic) 
@@ -93,16 +93,16 @@ class Level extends TiledMap
 				player.loadGraphic("assets/images/runner.png", true, 128, 128);
 				player.animation.add("test", [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
 				player.maxVelocity.x = 550;
-				player.maxVelocity.y = 850;
+				player.maxVelocity.y = 800;
 				player.acceleration.y = 6400; 
 				player.drag.x = player.maxVelocity.x * 4;
 				FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
-				state.player = player;
+				state.setPlayer(player);
 				state.add(player);
 				
 			case "death_zone":
 				var floor = new FlxObject(x, y, object.width, object.height);
-				state.deathZone = floor;
+				state.setDeathZone(floor);
 		}
 	}
 	
@@ -119,5 +119,9 @@ class Level extends TiledMap
 			}
 		}
 		return false;
+	}
+	
+	public function getPlatforms():FlxGroup {
+		return platforms;
 	}
 }
