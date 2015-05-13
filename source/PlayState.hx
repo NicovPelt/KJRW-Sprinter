@@ -19,7 +19,7 @@ class PlayState extends FlxState
 	public var deathZone:FlxObject;
 	
 	public var airtime:Float = 0;
-	private var MAX_AIRTIME:Float = 0.12;
+	private var MAX_AIRTIME:Float = 0.15;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -56,16 +56,13 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.pressed.SPACE && airtime > 0)
+		if (FlxG.keys.pressed.SPACE && airtime >= 0)
 		{
 			airtime += FlxG.elapsed;
-			player.velocity.y += -player.maxVelocity.y / 4;
+			player.velocity.y += -player.maxVelocity.y;
 			if(airtime >= MAX_AIRTIME){
 				airtime = -1;
 			}
-		} else if (FlxG.keys.pressed.SPACE && airtime == 0) {
-			airtime += FlxG.elapsed;
-			player.velocity.y = -player.maxVelocity.y /3;
 		} else if (airtime != 0)
 		{
 			airtime = -1;
@@ -79,7 +76,7 @@ class PlayState extends FlxState
 		
 		if (level.collideWithPlatforms(player)) {
 			airtime = 0;
-		}
+		} 
 		
 		if (FlxG.overlap(player, deathZone))
 		{

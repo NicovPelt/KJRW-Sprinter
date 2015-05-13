@@ -10,6 +10,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxCamera;
+import flixel.util.FlxPoint;
 import haxe.io.Path;
 
 /**
@@ -93,9 +94,9 @@ class Level extends TiledMap
 				player.animation.add("test", [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
 				player.maxVelocity.x = 550;
 				player.maxVelocity.y = 850;
-				player.acceleration.y = 2400; 
+				player.acceleration.y = 6400; 
 				player.drag.x = player.maxVelocity.x * 4;
-				FlxG.camera.follow(player);
+				FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
 				state.player = player;
 				state.add(player);
 				
