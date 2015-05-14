@@ -15,10 +15,10 @@ class PlayState extends FlxState
 {
 	
 	private var level:Level;
-	private var player:FlxSprite;
-	private var deathZone:FlxObject;
+	public var player:FlxSprite;
+	public var deathZone:FlxObject;
 	
-	private var airtime:Float = 0;
+	public var airtime:Float = 0;
 	private var MAX_AIRTIME:Float = 0.15;
 	
 	/**
@@ -35,7 +35,7 @@ class PlayState extends FlxState
 		level = new Level("assets/data/level1.tmx");
 		
 		//adding the solid platforms to the stage. When adding background, add before this!
-		add(level.getPlatforms());
+		add(level.platforms);
 		
 		level.loadObjects(this);
 		
@@ -83,12 +83,4 @@ class PlayState extends FlxState
 			FlxG.resetState();
 		}
 	}	
-	
-	public function setPlayer(player:FlxSprite) {
-		this.player = player;
-	}
-	
-	public function setDeathZone(deathZone:FlxObject) {
-		this.deathZone = deathZone;
-	}
 }
