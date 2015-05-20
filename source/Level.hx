@@ -90,8 +90,10 @@ class Level extends TiledMap
 		switch(object.type.toLowerCase()) {
 			case "player_start":
 				var player = new FlxSprite(x, y);
-				player.loadGraphic("assets/images/runner.png", true, 128, 128);
-				player.animation.add("test", [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
+				player.loadGraphic( "assets/images/runner.png", true, 128, 128);
+				player.animation.add( "test", [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
+				player.animation.add( "jump up", [ 8 ], 12, true);
+				player.animation.add( "jump down", [ 9 ], 12, true);
 				player.maxVelocity.x = 550;
 				player.maxVelocity.y = 850;
 				player.acceleration.y = 6400; 

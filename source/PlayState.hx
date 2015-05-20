@@ -58,14 +58,19 @@ class PlayState extends FlxState
 	{
 		if (FlxG.keys.pressed.SPACE && airtime >= 0)
 		{
+			player.animation.play ( "jump up" );
+			
 			airtime += FlxG.elapsed;
 			player.velocity.y += -player.maxVelocity.y;
 			if(airtime >= MAX_AIRTIME){
 				airtime = -1;
+				player.animation.play ( "jump down" );
 			}
 		} else if (airtime != 0)
 		{
+			
 			airtime = -1;
+			player.animation.play ( "jump down" );
 		}
 		
 		if (player.velocity.x < player.maxVelocity.x) {
@@ -76,6 +81,8 @@ class PlayState extends FlxState
 		
 		if (level.collideWithPlatforms(player)) {
 			airtime = 0;
+			
+			player.animation.play ( "test" );
 		} 
 		
 		if (FlxG.overlap(player, deathZone))
