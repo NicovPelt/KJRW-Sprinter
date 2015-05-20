@@ -19,7 +19,7 @@ class PlayState extends FlxState
 	public var deathZone:FlxObject;
 	
 	public var airtime:Float = 0;
-	private var MAX_AIRTIME:Float = 0.15;
+	private var MAX_AIRTIME:Float = 0.2;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 

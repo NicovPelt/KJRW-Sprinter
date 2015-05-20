@@ -95,7 +95,7 @@ class Level extends TiledMap
 				player.animation.add( "jump up", [ 8 ], 12, true);
 				player.animation.add( "jump down", [ 9 ], 12, true);
 				player.maxVelocity.x = 550;
-				player.maxVelocity.y = 850;
+				player.maxVelocity.y = 750;
 				player.acceleration.y = 6400; 
 				player.drag.x = player.maxVelocity.x * 4;
 				FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
