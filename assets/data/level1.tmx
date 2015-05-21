@@ -9,7 +9,7 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1UEKgCAQBVDT7n/mWhi4SGgSiuw9+LgZxcU4pgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwB8te3LN+vJdAGZ1zNqSrs3aXn30nHbPWUpNbtZe/BF82Z23A09p+zMyb0f6OgfrYSb+BAAAAAAAAAAAAAAAojb8ogB+
+   eJzt2EEKgCAQBVCz7n/mWiRIVGSFZb0HnzajuNAZKAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP6omxLnDA+fBeCrUq/tw7Fem+qXtaX75GvW0s+J2XcrZgQtO/N2oJb8fpb02yv3OhbWb/GeaJGZAHXcNWsAaNPeP6a1AAAAAAAAAAAAvN0I6KoAmQ==
   </data>
  </layer>
  <objectgroup name="PlayerStart">
