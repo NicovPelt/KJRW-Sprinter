@@ -3,8 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 
 /**
@@ -12,12 +10,21 @@ import flixel.util.FlxMath;
  */
 class MenuState extends FlxState
 {
+	
+	var background:FlxSprite;
+	var startButton:FlxSprite;
+	var optionsButton:FlxSprite;
+	var infoButton:FlxSprite;
+	var quitButton:FlxSprite;
+	
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
 	override public function create():Void
 	{
 		super.create();
+		background = new FlxSprite()
+		background.loadGraphic("");
 	}
 	
 	/**

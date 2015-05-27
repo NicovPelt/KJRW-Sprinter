@@ -24,6 +24,7 @@ class Level extends TiledMap
 	
 	//groups to contain different tile layers. Remember to add when foreground and/or background is added
 	public var platforms:FlxGroup;
+	public var background:FlxGroup;
 	private var collidableTileLayers:Array<FlxTilemap>;
 	
 	public function new(level:Dynamic) 
@@ -31,6 +32,7 @@ class Level extends TiledMap
 		super(level);
 		
 		platforms = new FlxGroup();
+		background = new FlxGroup();
 		
 		FlxG.camera.setBounds(0, 0, fullWidth, fullHeight, true);
 		
@@ -67,6 +69,7 @@ class Level extends TiledMap
 				collidableTileLayers.push(tilemap);
 			}else {
 				//add code when non-solid layers are added
+				background.add(tilemap);
 			}
 		}
 	}

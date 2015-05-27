@@ -34,6 +34,9 @@ class PlayState extends FlxState
 		
 		level = new Level("assets/data/level1.tmx");
 		
+		//adding non-collidable background layer.
+		add(level.background);
+		
 		//adding the solid platforms to the stage. When adding background, add before this!
 		add(level.platforms);
 		
