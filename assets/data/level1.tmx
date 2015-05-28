@@ -9,13 +9,13 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2UEOwyAMBEDa/P/POfQBBbGHFcxIuRol2IlNxgAAAAAAAAAAAAAAAAAAAAAAAE72nbyA/9QKwB1m+6fVnsp3BAA41U7/lDqn0mtBRqqW2uJASltuq5GzrO5ncv/bcrItDh2aa2R2rbbcbnyP3Ogzfs/vGXvz8+qsnZzZU3N/8n9M4vxhNc7uvQEAAAAAAAAAAAAAAJ1e73IBPQ==
+   eJzt10sKgCAQAFCN7n/m2rQJE80PSe+By3BsxlFDAAAAAAAAAAAAAAAAAAAA/iCeYxs09onroK+rLuRwTSX7Wm7h3+594k1PiAXfjbxnpGKvnS8Xf4/YR/XaUf/1y2dDbc0+1WdJ3UIL97A+ZwxrydV9S/5TPTv1VvV+BQAAAAAAAAAAAAAAAAAAAAAAAGC2A3mGAVs=
   </data>
  </layer>
  <objectgroup name="PlayerStart">
-  <object id="1" name="start" type="player_start" x="15.3499" y="2015.99" width="46.4175" height="60.6998"/>
+  <object id="1" name="start" type="player_start" x="66.8651" y="1246.29" width="46.4175" height="60.6998"/>
  </objectgroup>
  <objectgroup name="DeathZone">
-  <object id="2" name="deathZone" type="death_zone" x="4.96032" y="2507.44" width="9543.77" height="77.2425"/>
+  <object id="2" name="deathZone" type="death_zone" x="4.96032" y="2507.44" width="13569.9" height="151.8"/>
  </objectgroup>
 </map>
