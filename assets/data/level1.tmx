@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="11">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="57">
  <tileset firstgid="1" name="Tiles" tilewidth="64" tileheight="64">
   <image source="../images/Tileset.png" width="192" height="192"/>
  </tileset>
@@ -9,13 +9,22 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3cEOgyAMAFC3/f8/z8sSY0ahosyR9xJOEkXjpbTVZQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID5PdbxXMfr1wsBAAAAAAAAoJsc8Bif57wdnjkAAADUbWPqUix9Vdz97bzRaF1ftLar5gIAAEBEjAkAAMBIatgBAADgv0R11fv4Por7a7Xh0fFsbffR2u+Ms3LtpXuzdwIAAMysljeWVwYAAADOZr8BAAAAYi3fAgcAAIARtvndTH9z9v9W+3P29irLS8+jpY8804Nfmt/aU5+9vvcQAACgTU8s3/ovbfsFAAAAAAAAANxFNoet/xwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuKM31J4Brw==
+   eJzt3UlygzAQAEAn/v+f4wsVQgHRikDTXcUpxGYR0mgYw+sFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8/v6LN+f5T16QwDgwDJWLUvvMWv7faWLsRUAYIy9eE5sBnBMvwkA83EP+BriqDraKdDaul/Wt6Qdj3fCOgAAPaTEKr3m3bn1ganbd7ZtPda9uq4S7iC1X0i5Po5yU2c5K9fnOK1qu+VzAYBoxKbMwD3A6znmAACUUhsMQESRx7+aPNJSxx7xuAHAnZzV5pXWV+b+vXV9YI9689LPPNq3mWKgCPu4SIn9c9aJWN/aqx74Ln3H3r7Oei5np27imGesAJDiv1hIrAREYF5xjSuO893PpXH1OndvCwAQnbiIJyqtTch9BlZtHYfrqow5RBr3H/e1qlHhL/0bANGJUYE76/mc8FlE219YkwcBmM+6b0/5rV/p+622n1n7e0Nj0jxy3meU2z5S23LN92uH8Fyj87Stn6NR8v/G0/7kkQDgV4u4Rb6A6MSXEIcx7dlG550AAAC2Ws8zS+Y9tbktubG4nHsAniw3DpNfBgBGG1Gv0Oo9iuInAACgVo/nSqgLBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgFj/PcQSV
   </data>
  </layer>
  <objectgroup name="PlayerStart">
-  <object id="1" name="start" type="player_start" x="15.3499" y="2015.99" width="46.4175" height="60.6998"/>
+  <object id="56" name="start" type="player_start" x="24" y="1952" width="40" height="188"/>
  </objectgroup>
  <objectgroup name="DeathZone">
   <object id="2" name="deathZone" type="death_zone" x="4.96032" y="2507.44" width="60091" height="77.2425"/>
+  <object id="13" x="31356" y="1786.67" width="8"/>
+  <object id="14" x="31398.7" y="1768"/>
+  <object id="15" name="deathZone" type="death_zone" x="31353.3" y="1480" width="56" height="306.667"/>
+  <object id="19" name="deathZone" type="death_zone" x="-640" y="2512" width="63584" height="120" visible="0"/>
+  <object id="33" name="deathZone" type="death_zone" x="42178.7" y="2144" width="64" height="288"/>
+  <object id="34" type="death_zone" x="33936" y="2480" width="4968" height="224"/>
+  <object id="36" type="death_zone" x="38912" y="2480" width="3440" height="256"/>
+  <object id="37" type="death_zone" x="42360" y="2464" width="4896" height="296"/>
+  <object id="53" name="deathZone" type="death_zone" x="-640" y="2484" width="60736" height="208"/>
  </objectgroup>
 </map>
