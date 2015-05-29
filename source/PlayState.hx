@@ -3,10 +3,12 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 import flixel.FlxObject;
+import flixel.plugin.MouseEventManager;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -17,10 +19,17 @@ class PlayState extends FlxState
 	private var level:Level;
 	public var player:FlxSprite;
 	public var deathZone:FlxObject;
+	private var pauseButton:FlxSprite;
+	private var pauseScreen:FlxSprite;
+	
+	private var paused:Bool = false;
 	
 	public var airtime:Float = 0;
 	private var MAX_AIRTIME:Float = 0.2;
 	private var jumpReleased:Bool = true;
+	
+	private var jumpSound:FlxSound;
+	private var walkSound:FlxSound;	
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -43,9 +52,16 @@ class PlayState extends FlxState
 		
 		level.loadObjects(this);
 		
+		pauseButton = new FlxSprite();
+		pauseButton.loadGraphic("assets/images/Pauze.png");
+		add(pauseButton);
 		
+		jumpSound = FlxG.sound.load(AssetPaths.jump_sound__mp3);
+		walkSound = FlxG.sound.load(AssetPaths.step_sound__mp3);
 		
 		player.animation.play("walk");
+		
+		
 	}
 	
 	/**
@@ -61,44 +77,56 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)//char jumps
-		{
-			player.animation.play ( "jump up" );
+		if (FlxG.keys.justPressed.P) {
+			paused = !paused;
 			
-			airtime += FlxG.elapsed;
-			player.velocity.y += -player.maxVelocity.y;
-			if(airtime >= MAX_AIRTIME){
+		}
+		
+		if (!paused) {
+			pauseButton.x = FlxG.camera.x;
+			pauseButton.y = FlxG.camera.y;
+			
+			if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)//char jumps
+			{
+				player.animation.play ( "jump up" );
+				
+				jumpSound.play();
+				
+				airtime += FlxG.elapsed;
+				player.velocity.y += -player.maxVelocity.y;
+				if(airtime >= MAX_AIRTIME){
+					airtime = -1;
+					player.animation.play ( "jump down" );
+				}
+			} else if (airtime != 0)//spacebar is released or reached max jump height
+			{
+				jumpReleased = false;
 				airtime = -1;
 				player.animation.play ( "jump down" );
 			}
-		} else if (airtime != 0)//spacebar is released or reached max jump height
-		{
-			jumpReleased = false;
-			airtime = -1;
-			player.animation.play ( "jump down" );
-		}
-		
-		if (!FlxG.keys.pressed.SPACE) {//player released spacebar, so can jump again
-			jumpReleased = true;
-		}
-		
-		if (player.velocity.x < player.maxVelocity.x) {//character moves forward
-			player.acceleration.x = player.maxVelocity.x * 4;
-		}
-		
-		super.update();
-		
-		if (level.collideWithPlatforms(player)) {//char touches platform
-			airtime = 0;
 			
-			player.animation.play ( "walk" );
-		} else if (!FlxG.keys.pressed.SPACE) {//player walks off of the platform
-			player.animation.play ( "jump down" );
-		}
-		
-		if (FlxG.overlap(player, deathZone))//player has fallen outside of the level, dies
-		{
-			FlxG.resetState();
+			if (!FlxG.keys.pressed.SPACE) {//player released spacebar, so can jump again
+				jumpReleased = true;
+			}
+			
+			if (player.velocity.x < player.maxVelocity.x) {//character moves forward
+				player.acceleration.x = player.maxVelocity.x * 4;
+			}
+			
+			super.update();
+			
+			if (level.collideWithPlatforms(player)) {//char touches platform
+				airtime = 0;
+				walkSound.play();
+				player.animation.play ( "walk" );
+			} else if (!FlxG.keys.pressed.SPACE) {//player walks off of the platform
+				player.animation.play ( "jump down" );
+			}
+			
+			if (FlxG.overlap(player, deathZone))//player has fallen outside of the level, dies
+			{
+				FlxG.resetState();
+			}
 		}
 	}	
 }
