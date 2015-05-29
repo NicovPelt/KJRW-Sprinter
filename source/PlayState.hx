@@ -43,12 +43,13 @@ class PlayState extends FlxState
 		
 		level.loadObjects(this);
 		
+		
+		
 		player.animation.play("walk");
 	}
 	
 	/**
-	 * Function that is called when this state is destroyed - you might want to 
-	 * consider setting all objects this state uses to null to help garbage collection.
+	 * Function that is called when this state is destroyed 
 	 */
 	override public function destroy():Void
 	{
@@ -60,7 +61,7 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)
+		if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)//char jumps
 		{
 			player.animation.play ( "jump up" );
 			
@@ -70,32 +71,32 @@ class PlayState extends FlxState
 				airtime = -1;
 				player.animation.play ( "jump down" );
 			}
-		} else if (airtime != 0)
+		} else if (airtime != 0)//spacebar is released or reached max jump height
 		{
 			jumpReleased = false;
 			airtime = -1;
 			player.animation.play ( "jump down" );
 		}
 		
-		if (!FlxG.keys.pressed.SPACE) {
+		if (!FlxG.keys.pressed.SPACE) {//player released spacebar, so can jump again
 			jumpReleased = true;
 		}
 		
-		if (player.velocity.x < player.maxVelocity.x) {
+		if (player.velocity.x < player.maxVelocity.x) {//character moves forward
 			player.acceleration.x = player.maxVelocity.x * 4;
 		}
 		
 		super.update();
 		
-		if (level.collideWithPlatforms(player)) {
+		if (level.collideWithPlatforms(player)) {//char touches platform
 			airtime = 0;
 			
 			player.animation.play ( "walk" );
-		} else if (!FlxG.keys.pressed.SPACE) {
+		} else if (!FlxG.keys.pressed.SPACE) {//player walks off of the platform
 			player.animation.play ( "jump down" );
 		}
 		
-		if (FlxG.overlap(player, deathZone))
+		if (FlxG.overlap(player, deathZone))//player has fallen outside of the level, dies
 		{
 			FlxG.resetState();
 		}

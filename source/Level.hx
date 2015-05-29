@@ -36,7 +36,7 @@ class Level extends TiledMap
 		
 		FlxG.camera.setBounds(0, 0, fullWidth, fullHeight, true);
 		
-		for (tileLayer in layers) {
+		for (tileLayer in layers) {//setting up the layers of the level
 			var tileSheetName:String = tileLayer.properties.get("tileset");
 			if (tileSheetName == null)
 				trace ("'tileset' property not defined for the '" + tileLayer.name + "' layer. Please add the property to the layer.");
