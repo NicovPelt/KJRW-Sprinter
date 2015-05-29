@@ -60,7 +60,7 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.pressed.SPACE && airtime >= 0)
+		if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)
 		{
 			player.animation.play ( "jump up" );
 			
@@ -72,8 +72,13 @@ class PlayState extends FlxState
 			}
 		} else if (airtime != 0)
 		{
+			jumpReleased = false;
 			airtime = -1;
 			player.animation.play ( "jump down" );
+		}
+		
+		if (!FlxG.keys.pressed.SPACE) {
+			jumpReleased = true;
 		}
 		
 		if (player.velocity.x < player.maxVelocity.x) {
