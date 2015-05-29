@@ -20,6 +20,7 @@ class PlayState extends FlxState
 	
 	public var airtime:Float = 0;
 	private var MAX_AIRTIME:Float = 0.2;
+	private var jumpReleased:Bool = true;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -42,7 +43,7 @@ class PlayState extends FlxState
 		
 		level.loadObjects(this);
 		
-		player.animation.play("test");
+		player.animation.play("walk");
 	}
 	
 	/**
@@ -71,7 +72,6 @@ class PlayState extends FlxState
 			}
 		} else if (airtime != 0)
 		{
-			
 			airtime = -1;
 			player.animation.play ( "jump down" );
 		}
@@ -85,8 +85,10 @@ class PlayState extends FlxState
 		if (level.collideWithPlatforms(player)) {
 			airtime = 0;
 			
-			player.animation.play ( "test" );
-		} 
+			player.animation.play ( "walk" );
+		} else if (!FlxG.keys.pressed.SPACE) {
+			player.animation.play ( "jump down" );
+		}
 		
 		if (FlxG.overlap(player, deathZone))
 		{
