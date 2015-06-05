@@ -61,7 +61,7 @@ class PlayState extends FlxState
 		
 		player.animation.play("walk");
 		
-		
+		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3);
 	}
 	
 	/**
@@ -83,8 +83,6 @@ class PlayState extends FlxState
 		}
 		
 		if (!paused) {
-			pauseButton.x = FlxG.camera.x;
-			pauseButton.y = FlxG.camera.y;
 			
 			if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)//char jumps
 			{

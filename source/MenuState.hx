@@ -91,8 +91,7 @@ class MenuState extends FlxState
 	}
 	
 	function start() {
-		Main.playState = new PlayState();
-		FlxG.switchState(Main.playState);
+		FlxG.switchState(new IntroState());
 	}
 	
 	/**
