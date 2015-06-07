@@ -6,6 +6,9 @@
  <tileset firstgid="10" name="character" tilewidth="128" tileheight="128">
   <image source="../images/character.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="11" name="coin" tilewidth="64" tileheight="64">
+  <image source="../images/KJRW-coin.png" width="64" height="64"/>
+ </tileset>
  <layer name="objects" width="1000" height="50">
   <properties>
    <property name="tileset" value="character"/>
@@ -20,6 +23,14 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt3V1zqyAQANA89OP2///htg/OWK8i6CIo58zw1DRJjQF2WejrBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD1ff60fz/tq/UbAYAN01g1tdpj1vz13g82YysAQDvL+aO5GUDa1G9GxbTzfjiq/y2J0+f9PwCMyhrwNUaNP69etwHIVSMebeHKmPboNVuOf2sNACAlZx5SK+5ePu/eusNH5vOk3tt8LabksanXhxGV9At7/cxWDjWVW8393sufxVv2jRHNZwMAjOBOc9NUrB793kvWMVrsZ+z5c2rBtbmea86eM/uvrSsDwLOpYX8WczeAPK3Hv72a7rXYPMqZPFLr6wbAM+2NL8af/23V5p2pryz9ecTZr/M1iBr15kefc63u9Wn34Ah/4ySnDyl5zPyeH+H6/Xp7xdYCR7Ya+zaMO/dV8/y0u+dbRz1jBQCuMo8VWs4ZjsTpd5/nMLYa92/P9dhR+bjodmbNseZ17vmz/CX/cJ3e7wUAGF2NeVEvcW6qHnC51si9HK1NKD0D60wdh/nvcSUxRA9xeqt+xPrjuqgaFf7SvwEwOnnuOGu108A5Nc8JL7W3PzdnH2/qd47G5WIaRiYPAvA8W/tSU+tX09xpazyI3ru4tt/QmPQcOfPrVL1t6v7Yu5dz92QvzwCwpsbIcnNxqbEl57FXaJ2njT5H48jvG0/rk0cCoKa9uVPp/4mO3m+49X7OzFvmTb6grZax8ci1AeaXMA5j2r21zjsB0LetWH2vJnLUOAiAGNFx5pG452xuS25sXD57AGorqYksVToPk18GAFprUa8QsRfR/AkAAIiwPFciIu5QF85dpO7/1HmOrf+vAgAA8FytzqaDHmztMdyKwX1HAAAAoD55KgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPnwDVc8YlA==
+  </data>
+ </layer>
+ <layer name="coin layer" width="1000" height="50">
+  <properties>
+   <property name="tileset" value="coin"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3TkNAAAMA7Hs5c+3LPpINoKbsyQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgu9oOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGN8gAMAAACAnQwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJjS7yQAi
   </data>
  </layer>
  <layer name="Tile Layer 1" width="1000" height="50">
