@@ -9,6 +9,7 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 import flixel.FlxObject;
 import flixel.plugin.MouseEventManager;
+import flixel.util.FlxPoint;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -21,12 +22,15 @@ class PlayState extends FlxState
 	public var deathZone:FlxObject;
 	private var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
+	private var hud:HUD;
 	
 	private var paused:Bool = false;
 	
 	public var airtime:Float = 0;
 	private var MAX_AIRTIME:Float = 0.2;
 	private var jumpReleased:Bool = true;
+	private var lives:Int = 3;
+	public var currentCheckpoint:FlxPoint;
 	
 	private var jumpSound:FlxSound;
 	private var walkSound:FlxSound;	
@@ -62,6 +66,9 @@ class PlayState extends FlxState
 		player.animation.play("walk");
 		
 		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3);
+		
+		hud = new HUD(0, lives);
+		add(hud);
 	}
 	
 	/**
@@ -123,7 +130,12 @@ class PlayState extends FlxState
 			
 			if (FlxG.overlap(player, deathZone))//player has fallen outside of the level, dies
 			{
-				FlxG.resetState();
+				//FlxG.resetState();
+				player.x = currentCheckpoint.x;
+				player.y = currentCheckpoint.y;
+				if (hud.loseLife() == 0) {
+					//game over
+				}
 			}
 		}
 	}	
