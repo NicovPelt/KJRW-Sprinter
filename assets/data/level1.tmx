@@ -3,18 +3,29 @@
  <tileset firstgid="1" name="Tiles" tilewidth="64" tileheight="64">
   <image source="../images/Tileset.png" width="192" height="192"/>
  </tileset>
- <tileset firstgid="10" name="character" tilewidth="128" tileheight="128">
-  <image source="../images/character.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="11" name="coin" tilewidth="64" tileheight="64">
+ <tileset firstgid="10" name="coin" tilewidth="64" tileheight="64">
   <image source="../images/KJRW-coin.png" width="64" height="64"/>
  </tileset>
- <layer name="objects" width="1000" height="50">
+ <tileset firstgid="11" name="objects" tilewidth="64" tileheight="64">
+  <image source="../images/objects.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="27" name="swag" tilewidth="192" tileheight="128">
+  <image source="../images/pixelart bush.png" width="192" height="128"/>
+ </tileset>
+ <layer name="test" width="1000" height="50">
   <properties>
-   <property name="tileset" value="character"/>
+   <property name="tileset" value="swag"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20Gf6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNcADW0AAQ==
+   eJztzgENAAAIA6D3sH9PY1w3SEACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHw07UBuHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoGUBBlEANw==
+  </data>
+ </layer>
+ <layer name="objects" width="1000" height="50">
+  <properties>
+   <property name="tileset" value="objects"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztyKEBAAAIA6B1///XvGYXIgkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8NkcDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAvZswAX
   </data>
  </layer>
  <layer name="Background" width="1000" height="50">
@@ -30,7 +41,7 @@
    <property name="tileset" value="coin"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3TkNAAAMA7Hs5c+3LPpINoKbsyQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgu9oOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGN8gAMAAACAnQwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJjS7yQAi
+   eJzt3TkNAAAMA7HM5Q+4LPpINoKbsyQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgu9oOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGN8gAMAAACAnQwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJjQJEAAf
   </data>
  </layer>
  <layer name="Tile Layer 1" width="1000" height="50">
