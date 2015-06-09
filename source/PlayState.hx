@@ -31,6 +31,7 @@ class PlayState extends FlxState
 	private var jumpReleased:Bool = true;
 	private var lives:Int = 3;
 	public var currentCheckpoint:FlxPoint;
+	public var checkpoints:Array<FlxObject>;
 	
 	private var jumpSound:FlxSound;
 	private var walkSound:FlxSound;	
@@ -43,6 +44,8 @@ class PlayState extends FlxState
 		super.create();
 		
 		FlxG.mouse.visible = false;
+		
+		checkpoints = new Array<FlxObject>();
 		
 		bgColor = 0xffaaaaaa;
 		
@@ -135,6 +138,12 @@ class PlayState extends FlxState
 				player.y = currentCheckpoint.y;
 				if (hud.loseLife() == 0) {
 					//game over
+				}
+			}
+			
+			for (checkpoint in checkpoints) {
+				if (FlxG.overlap(player, checkpoint)) {
+					currentCheckpoint = new FlxPoint(checkpoint.x, checkpoint.y);
 				}
 			}
 		}

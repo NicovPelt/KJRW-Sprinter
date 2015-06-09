@@ -12,6 +12,7 @@ import flixel.FlxG;
 import flixel.FlxCamera;
 import flixel.util.FlxPoint;
 import haxe.io.Path;
+import flixel.system.debug.Log;
 
 /**
  * ...
@@ -25,6 +26,7 @@ class Level extends TiledMap
 	//groups to contain different tile layers. Remember to add when foreground and/or background is added
 	public var platforms:FlxGroup;
 	public var background:FlxGroup;
+	//public var secondBackground:FlxGroup;
 	private var collidableTileLayers:Array<FlxTilemap>;
 	
 	public function new(level:Dynamic) 
@@ -39,8 +41,8 @@ class Level extends TiledMap
 		for (tileLayer in layers) {//setting up the layers of the level
 			var tileSheetName:String = tileLayer.properties.get("tileset");
 			if (tileSheetName == null)
-				trace ("'tileset' property not defined for the '" + tileLayer.name + "' layer. Please add the property to the layer.");
-				
+				FlxG.log.add("'tileset' property not defined for the '" + tileLayer.name + "' layer. Please add the property to the layer.");
+			
 			var tileSet:TiledTileSet = null;
 			for (ts in tilesets) { //loop to find the right tileset
 				if (ts.name == tileSheetName) {
@@ -49,26 +51,26 @@ class Level extends TiledMap
 				}
 			}
 			if (tileSet == null)
-				throw "Tileset '" + tileSheetName + " not found. Did you mispell the 'tilesheet' property in " + tileLayer.name + "' layer?";
+				FlxG.log.add( "Tileset '" + tileSheetName + " not found. Did you mispell the 'tilesheet' property in " + tileLayer.name + "' layer?");
 				
 			//puts together the imagepath for the tilesheet
 			var imagePath = new Path(tileSet.imageSource);
 			var proccessedPath = c_PATH_LEVEL_TILESHEETS + imagePath.file + "." + imagePath.ext;
-			
+			FlxG.log.add(proccessedPath);
 			var tilemap:FlxTilemap = new FlxTilemap();
 			tilemap.widthInTiles = width;
 			tilemap.heightInTiles = height;
 			tilemap.loadMap(tileLayer.tileArray, proccessedPath, tileSet.tileWidth, tileSet.tileHeight, 0, 1, 1, 1);
-			
+			FlxG.log.add(tileLayer.name);
 			//check what kind of layer it is
 			if (tileLayer.properties.contains("solid")) {
 				if (collidableTileLayers == null)
 					collidableTileLayers = new Array<FlxTilemap>();
-				
 				platforms.add(tilemap);
 				collidableTileLayers.push(tilemap);
-			}else {
-				//add code when non-solid layers are added
+			} else {
+				//non solid layers
+				FlxG.log.add(tilemap);
 				background.add(tilemap);
 			}
 		}
@@ -109,6 +111,9 @@ class Level extends TiledMap
 			case "death_zone":
 				var floor = new FlxObject(x, y, object.width, object.height);
 				state.deathZone = floor;
+				
+			case "checkpoints":
+				state.checkpoints.push(new FlxObject(x, y, object.width, object.height));
 		}
 	}
 	
