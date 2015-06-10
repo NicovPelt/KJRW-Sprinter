@@ -20,8 +20,6 @@ class PlayState extends FlxState
 	private var level:Level;
 	public var player:FlxSprite;
 	public var deathZone:FlxObject;
-	private var pauseButton:FlxSprite;
-	private var pauseScreen:FlxSprite;
 	private var hud:HUD;
 	
 	private var paused:Bool = false;
@@ -43,7 +41,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 		
-		FlxG.mouse.visible = false;
+		//FlxG.mouse.visible = false;
 		
 		checkpoints = new Array<FlxObject>();
 		
@@ -59,10 +57,6 @@ class PlayState extends FlxState
 		
 		level.loadObjects(this);
 		
-		pauseButton = new FlxSprite();
-		pauseButton.loadGraphic("assets/images/Pauze.png");
-		add(pauseButton);
-		
 		jumpSound = FlxG.sound.load(AssetPaths.jump_sound__mp3);
 		walkSound = FlxG.sound.load(AssetPaths.step_sound__mp3);
 		
@@ -72,6 +66,7 @@ class PlayState extends FlxState
 		
 		hud = new HUD(0, lives);
 		add(hud);
+		MouseEventManager.add(hud.pauseButton, pause, null, null, null);
 	}
 	
 	/**
@@ -81,6 +76,11 @@ class PlayState extends FlxState
 	{
 		super.destroy();
 	}
+	
+	private function pause(sprite:FlxSprite) {
+		paused = !paused;
+		hud.pause(paused);
+	}
 
 	/**
 	 * Function that is called once every frame.
@@ -88,8 +88,7 @@ class PlayState extends FlxState
 	override public function update():Void
 	{
 		if (FlxG.keys.justPressed.P) {
-			paused = !paused;
-			
+			pause(hud.pauseButton);
 		}
 		
 		if (!paused) {
@@ -101,7 +100,7 @@ class PlayState extends FlxState
 				jumpSound.play();
 				
 				airtime += FlxG.elapsed;
-				player.velocity.y += -player.maxVelocity.y;
+				player.velocity.y = -player.maxVelocity.y - 100;
 				if(airtime >= MAX_AIRTIME){
 					airtime = -1;
 					player.animation.play ( "jump down" );
