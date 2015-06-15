@@ -4,6 +4,7 @@ import flixel.group.FlxTypedGroup;
 import flixel.FlxSprite;
 import flixel.util.FlxPoint;
 import flixel.FlxG;
+import flixel.text.FlxTextField;
 
 /**
  * ...
@@ -15,6 +16,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public var lives:Array<FlxSprite>;
 	public var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
+	public var questionText:FlxTextField;
 
 	public function new(MaxSize:Int=0, startingLives:Int) 
 	{
@@ -38,6 +40,13 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		add(pauseButton);
 		pauseScreen = new FlxSprite(0, 0, "assets/images/Pauze_scherm.png");
 		pauseScreen.scrollFactor.set(0, 0);
+		
+		questionText = new FlxTextField(0, 10, 0, "", 8, true, FlxG.camera);
+		questionText.wordWrap = false;
+		questionText.autoSize = true;
+		questionText.scrollFactor.set(0, 0);
+		add(questionText);
+		
 	}
 	
 	public function loseLife() {
@@ -53,4 +62,27 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		}
 	}
 	
+	/**
+	 * called when a player reaches a checkpoint. Asks the player the right question or removes the question from the screen.
+	 * @param	name
+	 */
+	public function checkpointReached(name:String) {
+		switch(name) {
+			case "question1":
+				questionText.text = "";//whatever text belangs to this question
+			case "question2":
+				questionText.text = "";
+			case "question3":
+				questionText.text = "";
+			default:
+				questionText.text = "";
+			
+		}
+		
+		questionText.x = (FlxG.stage.stageWidth - questionText.width) / 2;
+	}
+	
+	public function whyDeath() {
+		
+	}
 }

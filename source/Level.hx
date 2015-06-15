@@ -110,10 +110,16 @@ class Level extends TiledMap
 				
 			case "death_zone":
 				var floor = new FlxObject(x, y, object.width, object.height);
-				state.deathZone = floor;
+				state.deathZone.push(floor);
 				
 			case "checkpoints":
-				state.checkpoints.push(new FlxObject(x, y, object.width, object.height));
+				state.checkpoints.push(new Checkpoint(x, y, object.width, object.height, object.name));
+				
+			case "coin":
+				var tileset = group.map.getGidOwner(object.gid);
+				var coin = new FlxSprite(x, y, "assets/images/KJRW-coin.png");//c_PATH_LEVEL_TILESHEETS + tileset.imageSource);
+				state.coins.add(coin);
+				//state.coins.push(coin);
 		}
 	}
 	
