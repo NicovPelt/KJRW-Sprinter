@@ -166,6 +166,6 @@ class PlayState extends FlxState
 	}	
 	
 	public function getCoin(coin:FlxObject, player:FlxObject) {
-		Coin.kill();
+		coin.kill();
 	}
 }
