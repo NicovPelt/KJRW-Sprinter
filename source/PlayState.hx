@@ -152,6 +152,8 @@ class PlayState extends FlxState
 				}
 			}
 			
+			FlxG.overlap(coins, player, getCoin);
+			
 			for (checkpoint in checkpoints) {
 				if (FlxG.overlap(player, checkpoint)) {
 					checkpoints.remove(checkpoint); //DANGEROUS!!!!! TEST THIS ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -162,4 +164,8 @@ class PlayState extends FlxState
 			}
 		}
 	}	
+	
+	public function getCoin(coin:FlxObject, player:FlxObject) {
+		Coin.kill();
+	}
 }
