@@ -107,6 +107,10 @@ class Level extends TiledMap
 				FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
 				state.player = player;
 				state.add(player);
+				player = new FlxSprite(x + 18, y);
+				//player.frameWidth = 100;
+				state.phantom = player;
+				state.add(player);
 				
 			case "death_zone":
 				var floor = new FlxObject(x, y, object.width, object.height);

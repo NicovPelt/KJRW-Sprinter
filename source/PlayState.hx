@@ -20,8 +20,10 @@ class PlayState extends FlxState
 	
 	private var level:Level;
 	public var player:FlxSprite;
+	public var phantom:FlxSprite; //used for collision. not visible
 	public var deathZone:Array<FlxObject>;
 	private var hud:HUD;
+	private var background:Background;
 	
 	private var paused:Bool = false;
 	
@@ -43,6 +45,9 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+		
+		background = new Background();
+		add(background);
 		
 		//FlxG.mouse.visible = false;
 		
@@ -100,6 +105,8 @@ class PlayState extends FlxState
 		}
 		
 		if (!paused) {
+			
+			background.move();
 			
 			if (FlxG.keys.pressed.SPACE && airtime >= 0 && jumpReleased)//char jumps
 			{
