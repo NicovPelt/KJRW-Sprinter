@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="69">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="72">
  <tileset firstgid="1" name="Tiles" tilewidth="64" tileheight="64">
   <image source="../images/Tileset.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="65" name="coin" tilewidth="64" tileheight="64">
   <image source="../images/KJRW-coin.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="66" name="objects" tilewidth="64" tileheight="64">
+ <tileset firstgid="66" name="checkpoint" tilewidth="64" tileheight="128">
+  <image source="../images/checkpoint.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="67" name="objects" tilewidth="64" tileheight="64">
   <image source="../images/objects.png" width="256" height="256"/>
  </tileset>
- <tileset firstgid="82" name="swag" tilewidth="192" tileheight="128">
+ <tileset firstgid="83" name="swag" tilewidth="192" tileheight="128">
   <image source="../images/pixelart bush.png" width="192" height="128"/>
  </tileset>
  <layer name="Background" width="1000" height="50">
@@ -17,7 +20,7 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 1" width="1000" height="50">
@@ -26,7 +29,7 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3cFygyAQANC0/f9/bnpwYp1gAEGUfW/GU22iqLCsq3k8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYH5fz+X7ufyM3hAASFjGqmXpPWZtv692MbYCAIzxLp4TmwGkte4315+n/wWAMdwDPkfU+efZ920AcpmPlvtrJ20GAIyQE7v1mneX1gfmbt/etvVaF6Ip6Rc+9TOpHOpebjX3+nQdt9eqtjtiPhcAiE1seh/uc6Vpm/NpcwAAaqlhByCiyOPfkTzSUscesd0A6OfTuBx53E7Zq82rra8s/Xvr+sAe9ea1n5nat5nOwQj7uMjpQ0rWiVjf2qse+Cp9R2p/Zz2eM1M3kRb1HSsAAFDKvOIcZ7Tz1Y+l/MN5rn4uAEB04iLuqLY2ofQdWEfrOFxXdcwh8rj/+F6rGhX+078BEJ0YFbiynu8Jn0W0/YU1eRCA+az79pxn/Wp/32r7mUefNzQmzSMnvi55Bj+1fu4z9aXf7zyE+xqdp239Ho2a/zee9iePBAAvLeIW+QKiE19CHMa0exuddwIAANhqPc+smfcczW3JjcXl2ANwZ6VxmPwyADDaiHqFVr+jKH4CAACO6vFeCXXhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADM4hfPAASV
+   eJzt3V1PgzAUANCpT+qT8///V0eUZJkD2tJCP85J+mC2aNHL6L29yOUCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQxsttvN7G29kTAQAAAMhgrnXcD3UPAAAAchs1/3w87hGOGQAAaJte6frc55ZLf5dSefez77s2Que3NrdS7wUAAIA1csx2hNRKRuV3A2U5x/I4+pobW+eueYg7AAAoK6b/ZitHXOrBWuvNCs2X1DJZk7uPTD0EgKPoYW9XrvXpUj2/p5gY4RhnIed0zHvsn/RFngFlTOeTcwsg3db6VN7639p6PXV/JOX1kPnUPsQVo5MnwjrrEACgJV+38XH2JDZ8LIzPMyfFptTehNje3Nj6lJ7ePEaoAZaID/liu2LqYS3FvVgEoFW9rquuf6NW8/zuc/Pp6+8zJwWNKHn/cm/21gGP6GeovWei1+tkrPfL83jqyZ5YnPvYR48TgJ7VvmZhv+tluZYQkk/E3Fuw9P6tvdjUny9uoQ7Xh3FUHbDUMx1bl+t/QRxt6k17jCXSOT+AVDX3M6XeoxySU+Sah89a6Nuo+7L0QfwygjnO7XsAEGJPLh9af1UvACC3s/Od3M+r2HMddn3tm1oWAABAe+TsTMQBQN1iP6fP3pcAYGy584uU69refUv7nmwRIwAAADAe+y8AAEBOJZ7foB+Ylth3BwAAgOOcUTeq+flJ6hEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDrB7+4CAY=
   </data>
  </layer>
  <objectgroup name="PlayerStart">
@@ -35,12 +38,16 @@
  <objectgroup name="DeathZone">
   <object id="13" x="31356" y="1786.67" width="8"/>
   <object id="19" name="deathZone" type="death_zone" x="-640" y="2512" width="63584" height="120" visible="0"/>
-  <object id="57" name="deathZone" type="death_zone" x="814.71" y="2735.02" width="42329.3" height="316.125"/>
+  <object id="57" name="deathZone" type="death_zone" x="814.71" y="2960" width="51889.3" height="91.145"/>
  </objectgroup>
  <objectgroup name="coin layer">
-  <object id="62" name="coin" type="coin" gid="65" x="2778" y="2074" width="64" height="64"/>
-  <object id="63" name="coin" type="coin" gid="65" x="6846" y="1624" width="64" height="64"/>
-  <object id="66" name="coin" type="coin" gid="65" x="17346" y="2126" width="64" height="64"/>
+  <object id="62" name="coin" type="coin" gid="65" x="4784.06" y="2061.88" width="64" height="64"/>
+  <object id="63" name="coin" type="coin" gid="65" x="8909.64" y="1639.15" width="64" height="64"/>
+  <object id="66" name="coin" type="coin" gid="65" x="21343" y="2086.61" width="64" height="64"/>
  </objectgroup>
- <objectgroup name="checkpoints"/>
+ <objectgroup name="checkpoints">
+  <object id="69" name="checkpoint1" gid="66" x="11505.3" y="1919.67" width="64" height="128"/>
+  <object id="70" name="checkpoint2" gid="66" x="29530" y="1984" width="64" height="128"/>
+  <object id="71" name="checkpoint3" gid="66" x="41444" y="1984" width="64" height="128"/>
+ </objectgroup>
 </map>
