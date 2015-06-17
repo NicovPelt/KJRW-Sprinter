@@ -100,17 +100,19 @@ class Level extends TiledMap
 				player.animation.add( "walk", [0, 1, 2, 3, 4, 5, 6, 7], 12, true);
 				player.animation.add( "jump up", [ 8 ], 12, true);
 				player.animation.add( "jump down", [ 9 ], 12, true);
-				player.maxVelocity.x = 550;
-				player.maxVelocity.y = 1000;
-				player.acceleration.y = 5200; 
-				player.drag.x = player.maxVelocity.x * 4;
-				FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
 				state.player = player;
+				var phantom:FlxSprite;
+				phantom = new FlxSprite(x + 30, y);
+				phantom.loadGraphic("assets/images/phantom.png");
+				phantom.maxVelocity.x = 550;
+				phantom.maxVelocity.y = 1000;
+				phantom.acceleration.y = 5200; 
+				phantom.drag.x = phantom.maxVelocity.x * 4;
+				phantom.alpha = 0;
+				state.phantom = phantom;
+				state.add(phantom);
 				state.add(player);
-				player = new FlxSprite(x + 18, y);
-				//player.frameWidth = 100;
-				state.phantom = player;
-				state.add(player);
+				FlxG.camera.follow(phantom, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
 				
 			case "death_zone":
 				var floor = new FlxObject(x, y, object.width, object.height);

@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
@@ -21,6 +22,7 @@ class PlayState extends FlxState
 	private var level:Level;
 	public var player:FlxSprite;
 	public var phantom:FlxSprite; //used for collision. not visible
+	//public var playerSprites:FlxSpriteGroup;
 	public var deathZone:Array<FlxObject>;
 	private var hud:HUD;
 	private var background:Background;
@@ -115,7 +117,7 @@ class PlayState extends FlxState
 				jumpSound.play();
 				
 				airtime += FlxG.elapsed;
-				player.velocity.y = -player.maxVelocity.y - 100;
+				phantom.velocity.y = -phantom.maxVelocity.y - 100;
 				if(airtime >= MAX_AIRTIME){
 					airtime = -1;
 					player.animation.play ( "jump down" );
@@ -131,13 +133,13 @@ class PlayState extends FlxState
 				jumpReleased = true;
 			}
 			
-			if (player.velocity.x < player.maxVelocity.x) {//character moves forward
-				player.acceleration.x = player.maxVelocity.x * 4;
+			if (phantom.velocity.x < phantom.maxVelocity.x) {//character moves forward
+				phantom.acceleration.x = phantom.maxVelocity.x * 4;
 			}
 			
 			super.update();
 			
-			if (level.collideWithPlatforms(player)) {//char touches platform
+			if (level.collideWithPlatforms(phantom)) {//char touches platform
 				airtime = 0;
 				walkSound.play();
 				player.animation.play ( "walk" );
@@ -146,29 +148,31 @@ class PlayState extends FlxState
 			}
 			
 			for(zone in deathZone){
-				if (FlxG.overlap(player, zone))//player has fallen outside of the level, dies
+				if (FlxG.overlap(phantom, zone))//player has fallen outside of the level, dies
 				{
 					//FlxG.resetState();
 					if (hud.loseLife() == 0) {
 						//game over
 					} else {
-						player.x = currentCheckpoint.x;
-						player.y = currentCheckpoint.y;
+						phantom.x = currentCheckpoint.x;
+						phantom.y = currentCheckpoint.y;
 						
 					}
 				}
 			}
 			
-			FlxG.overlap(coins, player, getCoin);
+			FlxG.overlap(coins, phantom, getCoin);
 			
 			for (checkpoint in checkpoints) {
-				if (FlxG.overlap(player, checkpoint)) {
+				if (FlxG.overlap(phantom, checkpoint)) {
 					checkpoints.remove(checkpoint); //DANGEROUS!!!!! TEST THIS ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					currentCheckpoint = new FlxPoint(checkpoint.x, checkpoint.y);
 					hud.checkpointReached(checkpoint.name);
 					break;
 				}
 			}
+			player.x = phantom.x - 30;
+			player.y = phantom.y;
 		}
 	}	
 	
