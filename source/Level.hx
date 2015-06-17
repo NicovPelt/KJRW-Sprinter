@@ -118,8 +118,11 @@ class Level extends TiledMap
 				var floor = new FlxObject(x, y, object.width, object.height);
 				state.deathZone.push(floor);
 				
-			case "checkpoints":
-				state.checkpoints.push(new Checkpoint(x, y, object.width, object.height, object.name));
+			case "checkpoint":
+				var checkpoint = new Checkpoint(x, y, object.width, object.height, object.name);
+				state.checkpoints.push(checkpoint);
+				state.add(checkpoint);
+				//checkpoint.loadGraphic("assets/images/checkpoint1");
 				
 			case "coin":
 				var tileset = group.map.getGidOwner(object.gid);

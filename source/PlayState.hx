@@ -22,7 +22,6 @@ class PlayState extends FlxState
 	private var level:Level;
 	public var player:FlxSprite;
 	public var phantom:FlxSprite; //used for collision. not visible
-	//public var playerSprites:FlxSpriteGroup;
 	public var deathZone:Array<FlxObject>;
 	private var hud:HUD;
 	private var background:Background;
@@ -166,12 +165,13 @@ class PlayState extends FlxState
 			for (checkpoint in checkpoints) {
 				if (FlxG.overlap(phantom, checkpoint)) {
 					checkpoints.remove(checkpoint); //DANGEROUS!!!!! TEST THIS ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					checkpoint.checkReached();
 					currentCheckpoint = new FlxPoint(checkpoint.x, checkpoint.y);
 					hud.checkpointReached(checkpoint.name);
 					break;
 				}
 			}
-			player.x = phantom.x - 30;
+			player.x = phantom.x - 20;
 			player.y = phantom.y;
 		}
 	}	

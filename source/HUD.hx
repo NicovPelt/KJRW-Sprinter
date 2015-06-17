@@ -69,7 +69,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public function checkpointReached(name:String) {
 		switch(name) {
 			case "question1":
-				questionText.text = "";//whatever text belangs to this question
+				questionText.text = "";//whatever text belongs to this question
 			case "question2":
 				questionText.text = "";
 			case "question3":
@@ -83,6 +83,6 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	}
 	
 	public function whyDeath() {
-		
+		//Show text on screen that explains the mistake if the cause of death was a wrongly answered question
 	}
 }
