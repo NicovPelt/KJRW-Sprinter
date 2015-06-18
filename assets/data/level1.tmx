@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="74">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="50" tilewidth="64" tileheight="64" nextobjectid="78">
  <tileset firstgid="1" name="Tiles" tilewidth="64" tileheight="64">
   <image source="../images/Tileset.png" width="512" height="512"/>
  </tileset>
@@ -39,6 +39,9 @@
   <object id="13" x="31356" y="1786.67" width="8"/>
   <object id="19" name="deathZone" type="death_zone" x="-640" y="2512" width="63584" height="120" visible="0"/>
   <object id="57" name="deathZone" type="death_zone" x="814.71" y="2960" width="51889.3" height="91.145"/>
+  <object id="74" name="wrong1" type="death_zone" x="17483.3" y="1753.25" width="118.064" height="572.609"/>
+  <object id="75" name="wrong2" type="death_zone" x="35976" y="1497.44" width="74.7737" height="340.417"/>
+  <object id="76" name="wrong3" type="death_zone" x="49781.6" y="2174.34" width="114.128" height="564.738"/>
  </objectgroup>
  <objectgroup name="coin layer">
   <object id="63" name="coin" type="coin" gid="65" x="8939.59" y="1637.57" width="64" height="64"/>
@@ -50,5 +53,8 @@
   <object id="71" name="checkpoint3" type="checkpoint" gid="66" x="41221" y="1985.02" width="64" height="128"/>
   <object id="72" type="checkpoint" gid="66" x="35940.6" y="2367.97" width="64" height="128"/>
   <object id="73" type="checkpoint" gid="66" x="18082.7" y="1665.32" width="64" height="128"/>
+ </objectgroup>
+ <objectgroup name="VictoryLayer">
+  <object id="77" x="50102.3" y="1322.31" width="88.5478" height="613.932"/>
  </objectgroup>
 </map>

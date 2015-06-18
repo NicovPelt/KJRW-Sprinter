@@ -4,7 +4,7 @@ import flixel.group.FlxTypedGroup;
 import flixel.FlxSprite;
 import flixel.util.FlxPoint;
 import flixel.FlxG;
-import flixel.text.FlxTextField;
+import flixel.text.FlxText;
 
 /**
  * ...
@@ -16,7 +16,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public var lives:Array<FlxSprite>;
 	public var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
-	public var questionText:FlxTextField;
+	public var questionText:FlxText;
 
 	public function new(MaxSize:Int=0, startingLives:Int) 
 	{
@@ -41,11 +41,13 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		pauseScreen = new FlxSprite(0, 0, "assets/images/Pauze_scherm.png");
 		pauseScreen.scrollFactor.set(0, 0);
 		
-		questionText = new FlxTextField(0, 10, 0, "", 8, true, FlxG.camera);
-		questionText.wordWrap = false;
-		questionText.autoSize = true;
+		questionText = new FlxText(300, 100, 720);
+		questionText.setFormat(null, 40, 0xffffff, "center", FlxText.BORDER_OUTLINE);
+		//questionText.wordWrap = false;
+		//questionText.autoSize = true;
 		questionText.scrollFactor.set(0, 0);
 		add(questionText);
+		//questionText.text = "we doen wel een lange zin om te kijken wat er dan gebeurt";
 		
 	}
 	
@@ -68,14 +70,14 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	 */
 	public function checkpointReached(name:String) {
 		switch(name) {
-			case "question1":
-				questionText.text = "";//whatever text belongs to this question
-			case "question2":
-				questionText.text = "";
-			case "question3":
-				questionText.text = "";
+			case "checkpoint1":
+				questionText.text = "Ik moet eigenlijk naar school gaan.";//whatever text belongs to this question
+			case "checkpoint2":
+				questionText.text = "Er zijn op school regels die ik moet volgen";
+			case "checkpoint3":
+				questionText.text = "Ik moet wel mijn best blijven doen, ander moet ik een groep blijven zitten.";
 			default:
-				questionText.text = "";
+				questionText.text = "Ja! Dat was de juiste keuze.";
 			
 		}
 		
