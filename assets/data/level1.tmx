@@ -6,8 +6,8 @@
  <tileset firstgid="65" name="coin" tilewidth="64" tileheight="64">
   <image source="../images/KJRW-coin.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="66" name="checkpoint" tilewidth="64" tileheight="128">
-  <image source="../images/checkpoint.png" width="64" height="128"/>
+ <tileset firstgid="66" name="checkpoint2" tilewidth="64" tileheight="128">
+  <image source="../images/checkpoint2.png" width="64" height="128"/>
  </tileset>
  <tileset firstgid="67" name="objects" tilewidth="64" tileheight="64">
   <image source="../images/objects.png" width="256" height="256"/>
@@ -20,7 +20,7 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 1" width="1000" height="50">
@@ -29,7 +29,7 @@
    <property name="tileset" value="Tiles"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3V1PgzAUANCpT+qT8///V0eUZJkD2tJCP85J+mC2aNHL6L29yOUCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQxsttvN7G29kTAQAAAMhgrnXcD3UPAAAAchs1/3w87hGOGQAAaJte6frc55ZLf5dSefez77s2Que3NrdS7wUAAIA1csx2hNRKRuV3A2U5x/I4+pobW+eueYg7AAAoK6b/ZitHXOrBWuvNCs2X1DJZk7uPTD0EgKPoYW9XrvXpUj2/p5gY4RhnIed0zHvsn/RFngFlTOeTcwsg3db6VN7639p6PXV/JOX1kPnUPsQVo5MnwjrrEACgJV+38XH2JDZ8LIzPMyfFptTehNje3Nj6lJ7ePEaoAZaID/liu2LqYS3FvVgEoFW9rquuf6NW8/zuc/Pp6+8zJwWNKHn/cm/21gGP6GeovWei1+tkrPfL83jqyZ5YnPvYR48TgJ7VvmZhv+tluZYQkk/E3Fuw9P6tvdjUny9uoQ7Xh3FUHbDUMx1bl+t/QRxt6k17jCXSOT+AVDX3M6XeoxySU+Sah89a6Nuo+7L0QfwygjnO7XsAEGJPLh9af1UvACC3s/Od3M+r2HMddn3tm1oWAABAe+TsTMQBQN1iP6fP3pcAYGy584uU69refUv7nmwRIwAAADAe+y8AAEBOJZ7foB+Ylth3BwAAgOOcUTeq+flJ6hEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDrB7+4CAY=
+   eJzt3W1vgyAQAOB2+///uW0ak+5FBATl5HkSPs1suh2VO855uwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPRxf46v5/g++0QAAAAAGlhqHZ9D3QMAAIDWZs0/f1/3DNcMAADEpld6PJ+55drfpVfe/d/3TY3c80udW69jAQAAIEWOGUdOrWRWfjfQlznWxtH33NI698hD3AEAQF8l/TdbOeJaD1aqNys3X1LLJKV1H5l6CABH0cMeV6v16Vo9/0oxMcM1LnLmdMkx9k+uRZ4Bfbzmk7kFUG9rfSpv/Su1Xq/dH6n5es75jD7EFbOTJ0KadQgAANT3JpT25pbWp/T0tjFDDbBHfMgX4yqph0WKe7EIQFTWVUA0PZ9f5qcj+hlG75lwn5zHnlhc+tjFCcB1jb5moa+cfKLk2YK147f2Ymt/vriFufV6p2N0rf4XBLGZH0CtkfuZap9RzskpWp2Hz1q4NvuyRCZ+mcES5/Y9AMixJ5fPrb+qFwDQ2tn5Tuv3Vey5D7u/XptaFgAAQDxydl7EAcDYSj+nz96XAGBurfOLmvva3n1L+55sESMAAAAwH/svAABASz3e36AfmEjsuwMAAMBxzqgbjfz+JPUIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4ewDHLwW3
   </data>
  </layer>
  <objectgroup name="PlayerStart">
@@ -48,7 +48,7 @@
   <object id="69" name="checkpoint1" type="checkpoint" gid="66" x="11079.7" y="1919.67" width="64" height="128"/>
   <object id="70" name="checkpoint2" type="checkpoint" gid="66" x="29080.6" y="1984.79" width="64" height="128"/>
   <object id="71" name="checkpoint3" type="checkpoint" gid="66" x="41221" y="1985.02" width="64" height="128"/>
-  <object id="72" type="checkpoint" gid="66" x="35940.6" y="2367.97"/>
-  <object id="73" type="checkpoint" gid="66" x="18082.7" y="1665.32"/>
+  <object id="72" type="checkpoint" gid="66" x="35940.6" y="2367.97" width="64" height="128"/>
+  <object id="73" type="checkpoint" gid="66" x="18082.7" y="1665.32" width="64" height="128"/>
  </objectgroup>
 </map>
