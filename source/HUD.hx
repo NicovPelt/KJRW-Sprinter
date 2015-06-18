@@ -17,6 +17,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
 	public var questionText:FlxText;
+	public var helpText:FlxText;
+	public var coin:FlxSprite;
 
 	public function new(MaxSize:Int=0, startingLives:Int) 
 	{
@@ -31,6 +33,11 @@ class HUD extends FlxTypedGroup<FlxSprite>
 			add(life);
 		}
 		
+		coin = new FlxSprite(400, 20);
+		coin.loadGraphic(AssetPaths.KJRW_coin__png);
+		coin.scale.set(1.5, 1.5);
+		coin.scrollFactor.set(0, 0);
+		
 		pauseButton = new FlxSprite();
 		pauseButton.loadGraphic("assets/images/Pauze.png");
 		pauseButton.x = FlxG.stage.width - pauseButton.width - 10;
@@ -42,18 +49,27 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		pauseScreen.scrollFactor.set(0, 0);
 		
 		questionText = new FlxText(300, 100, 720);
-		questionText.setFormat(null, 40, 0xffffff, "center", FlxText.BORDER_OUTLINE);
-		//questionText.wordWrap = false;
-		//questionText.autoSize = true;
+		questionText.setFormat(null, 32, 0xffffff, "center", FlxText.BORDER_OUTLINE);
 		questionText.scrollFactor.set(0, 0);
-		add(questionText);
-		//questionText.text = "we doen wel een lange zin om te kijken wat er dan gebeurt";
+		add(questionText);	
 		
+		helpText = new FlxText(300, 600, 720);
+		helpText.setFormat(null, 20, 0xffffff, "center", FlxText.BORDER_OUTLINE);
+		helpText.scrollFactor.set(0, 0);
+		helpText.text += "Druk op 'Enter' voor hulp van de KJRW.";
 	}
 	
 	public function loseLife() {
 		remove(lives.pop());
 		return lives.length;
+	}
+	
+	public function getCoin() {
+		add(coin);
+	}
+	
+	public function removeCoin() {
+		remove(coin);
 	}
 	
 	public function pause(paused:Bool) {
@@ -64,18 +80,28 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		}
 	}
 	
+	public function removePause() {
+		remove(pauseScreen);
+	}
+	
 	/**
 	 * called when a player reaches a checkpoint. Asks the player the right question or removes the question from the screen.
 	 * @param	name
 	 */
-	public function checkpointReached(name:String) {
+	public function checkpointReached(name:String, hasCoin:Bool) {
 		switch(name) {
 			case "checkpoint1":
-				questionText.text = "Ik moet eigenlijk naar school gaan.";//whatever text belongs to this question
+				questionText.text = "Ik moet eigenlijk naar school gaan.";
+				if (hasCoin)
+					add(helpText);
 			case "checkpoint2":
-				questionText.text = "Er zijn op school regels die ik moet volgen";
+				questionText.text = "Er zijn op school regels die ik moet volgen.";
+				if (hasCoin)
+					add(helpText);
 			case "checkpoint3":
 				questionText.text = "Ik moet wel mijn best blijven doen, ander moet ik een groep blijven zitten.";
+				if (hasCoin)
+					add(helpText);
 			default:
 				questionText.text = "Ja! Dat was de juiste keuze.";
 			
@@ -84,7 +110,14 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		questionText.x = (FlxG.stage.stageWidth - questionText.width) / 2;
 	}
 	
-	public function whyDeath() {
+	public function whyDeath(reason:String) {
 		//Show text on screen that explains the mistake if the cause of death was a wrongly answered question
+		if (reason == "wrong1") {
+			questionText.text = "Nee, ik kan toch beter naar school gaan.";
+		} else if (reason == "wrong2") {
+			questionText.text = "Oh nee! Zo kom ik in de problemen.";
+		} else if (reason == "wrong3") {
+			questionText.text = "Oh nee! Ik laat me te veel afleiden.";
+		}
 	}
 }

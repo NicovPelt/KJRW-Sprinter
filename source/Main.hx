@@ -20,6 +20,8 @@ class Main extends Sprite
 	
 	public static var playState:PlayState;
 	public static var introState:IntroState;
+	public static var gameOverState:GameOverState;
+	public static var menuState:MenuState;
 	
 	// You can pretty much ignore everything from here on - your code should go in your states.
 	
