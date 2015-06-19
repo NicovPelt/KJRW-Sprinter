@@ -118,6 +118,10 @@ class Level extends TiledMap
 				var floor = new DeathZone(object.name, x, y, object.width, object.height);
 				state.deathZone.push(floor);
 				
+			case "victory":
+				var end = new FlxObject(x, y, object.width, object.height);
+				state.endZone = end;
+				
 			case "checkpoint":
 				var checkpoint = new Checkpoint(x, y, object.width, object.height, object.name);
 				state.checkpoints.push(checkpoint);

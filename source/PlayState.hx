@@ -23,6 +23,7 @@ class PlayState extends FlxState
 	public var player:FlxSprite;
 	public var phantom:FlxSprite; //used for collision. not visible
 	public var deathZone:Array<DeathZone>;
+	public var endZone:FlxObject;
 	private var hud:HUD;
 	private var background:Background;
 	
@@ -91,6 +92,11 @@ class PlayState extends FlxState
 	private function pause(sprite:FlxSprite) {
 		paused = !paused;
 		hud.pause(paused);
+		if (paused) {
+			FlxG.sound.pause();
+		} else {
+			FlxG.sound.resume();
+		}
 	}
 
 	/**
@@ -150,10 +156,9 @@ class PlayState extends FlxState
 			for(zone in deathZone){
 				if (FlxG.overlap(phantom, zone))//player has fallen outside of the level, dies
 				{
-					//FlxG.resetState();
+					FlxG.sound.pause();
 					if (hud.loseLife() == 0) {
 						//game over
-						FlxG.sound.pause();
 						Main.gameOverState = new GameOverState();
 						FlxG.switchState(Main.gameOverState);
 					} else {
@@ -163,6 +168,12 @@ class PlayState extends FlxState
 						hud.whyDeath(zone.name);
 					}
 				}
+			}
+			
+			if (FlxG.overlap(phantom, endZone)) {
+				FlxG.sound.pause();
+				Main.victoryState = new VictoryState();
+				FlxG.switchState(Main.victoryState);
 			}
 			
 			FlxG.overlap(coins, phantom, getCoin);
@@ -182,6 +193,7 @@ class PlayState extends FlxState
 		} else if(FlxG.keys.justPressed.SPACE) {
 			paused = !paused;
 			hud.removePause();
+			FlxG.sound.resume();
 		}
 	}	
 	

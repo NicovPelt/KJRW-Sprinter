@@ -99,11 +99,12 @@ class HUD extends FlxTypedGroup<FlxSprite>
 				if (hasCoin)
 					add(helpText);
 			case "checkpoint3":
-				questionText.text = "Ik moet wel mijn best blijven doen, ander moet ik een groep blijven zitten.";
+				questionText.text = "Ik moet wel mijn best blijven doen, anders moet ik een groep blijven zitten.";
 				if (hasCoin)
 					add(helpText);
 			default:
 				questionText.text = "Ja! Dat was de juiste keuze.";
+				remove(helpText);
 			
 		}
 		
