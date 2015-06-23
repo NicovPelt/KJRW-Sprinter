@@ -16,7 +16,6 @@ class MenuState extends FlxState
 	var startButton:FlxSprite;
 	var optionsButton:FlxSprite;
 	var infoButton:FlxSprite;
-	var quitButton:FlxSprite;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -44,17 +43,11 @@ class MenuState extends FlxState
 		add(infoButton);
 		infoButton.x = (FlxG.width / 4) * 3 - infoButton.width / 2;
 		infoButton.y = 300;
-		quitButton = new FlxSprite();
-		quitButton.loadGraphic("assets/images/mainMenu/Stop.png");
-		add(quitButton);
-		quitButton.x = (FlxG.width / 4) * 3 - quitButton.width / 2;
-		quitButton.y = 500;
 		
 		FlxG.plugins.add(new MouseEventManager());
 		MouseEventManager.add(startButton, startGame, null, mouseOver, mouseOut);
 		MouseEventManager.add(optionsButton, gotoOptions, null, mouseOver, mouseOut);
 		MouseEventManager.add(infoButton, gotoInfoPage, null, mouseOver, mouseOut);
-		MouseEventManager.add(quitButton, quit, null, mouseOver, mouseOut);
 		
 	}
 	
@@ -79,14 +72,6 @@ class MenuState extends FlxState
 	 * @param	sprite
 	 */
 	function gotoInfoPage(sprite:FlxSprite) {
-		
-	}
-	
-	/**
-	 * Called when the quit button is clicked
-	 * @param	sprite
-	 */
-	function quit(sprite:FlxSprite) {
 		
 	}
 	
