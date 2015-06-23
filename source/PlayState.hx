@@ -12,6 +12,7 @@ import flixel.util.FlxMath;
 import flixel.FlxObject;
 import flixel.plugin.MouseEventManager;
 import flixel.util.FlxPoint;
+import haxe.Timer;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -23,6 +24,7 @@ class PlayState extends FlxState
 	public var player:FlxSprite;
 	public var phantom:FlxSprite; //used for collision. not visible
 	public var deathZone:Array<DeathZone>;
+	private var currentDeathZone:DeathZone;
 	public var endZone:FlxObject;
 	private var hud:HUD;
 	private var background:Background;
@@ -41,7 +43,8 @@ class PlayState extends FlxState
 	public var atQuestion:Bool = false;
 	
 	private var jumpSound:FlxSound;
-	private var walkSound:FlxSound;	
+	private var walkSound:FlxSound;
+	private var defeatSound:FlxSound;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -71,6 +74,7 @@ class PlayState extends FlxState
 		
 		jumpSound = FlxG.sound.load(AssetPaths.jump_sound__mp3);
 		walkSound = FlxG.sound.load(AssetPaths.step_sound__mp3);
+		defeatSound = FlxG.sound.load(AssetPaths.deafeat_tune1__mp3);
 		
 		player.animation.play("walk");
 		
@@ -156,17 +160,11 @@ class PlayState extends FlxState
 			for(zone in deathZone){
 				if (FlxG.overlap(phantom, zone))//player has fallen outside of the level, dies
 				{
+					paused = !paused;
 					FlxG.sound.pause();
-					if (hud.loseLife() == 0) {
-						//game over
-						Main.gameOverState = new GameOverState();
-						FlxG.switchState(Main.gameOverState);
-					} else {
-						paused = !paused;
-						phantom.x = currentCheckpoint.x;
-						phantom.y = currentCheckpoint.y;
-						hud.whyDeath(zone.name);
-					}
+					defeatSound.play();
+					currentDeathZone = zone;
+					Timer.delay(death, 3000);
 				}
 			}
 			
@@ -195,7 +193,19 @@ class PlayState extends FlxState
 			hud.removePause();
 			FlxG.sound.resume();
 		}
-	}	
+	}
+	
+	public function death() {
+		if (hud.loseLife() == 0) {
+			//game over
+			Main.gameOverState = new GameOverState();
+			FlxG.switchState(Main.gameOverState);
+		} else {
+			phantom.x = currentCheckpoint.x;
+			phantom.y = currentCheckpoint.y;
+			hud.whyDeath(currentDeathZone.name);
+		}
+	}
 	
 	public function getCoin(coin:FlxObject, player:FlxObject) {
 		coin.kill();
