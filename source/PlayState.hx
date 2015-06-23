@@ -104,7 +104,7 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.justPressed.P) {
+		if (FlxG.keys.justPressed.P || FlxG.keys.justPressed.ESCAPE) {
 			pause(hud.pauseButton);
 		}
 		
