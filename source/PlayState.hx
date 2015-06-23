@@ -78,7 +78,7 @@ class PlayState extends FlxState
 		
 		player.animation.play("walk");
 		
-		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3);
+		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3, 0.5);
 		
 		hud = new HUD(0, lives);
 		add(hud);
