@@ -141,6 +141,7 @@ class PlayState extends FlxState
 			
 			if (haveCoin && atQuestion && FlxG.keys.justPressed.ENTER) {
 				//something should happen here to point the payer in the right direction
+				hud.removeCoin();
 			}
 			
 			if (phantom.velocity.x < phantom.maxVelocity.x) {//character moves forward
