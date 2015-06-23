@@ -5,6 +5,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.util.FlxMath;
 import flixel.plugin.MouseEventManager;
+import openfl.Lib;
+import openfl.net.URLRequest;
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -33,11 +35,11 @@ class MenuState extends FlxState
 		add(startButton);
 		startButton.x = (FlxG.width / 2 - startButton.width) / 2;
 		startButton.y = 300;
-		optionsButton = new FlxSprite();
-		optionsButton.loadGraphic("assets/images/mainMenu/Instellingen.png");
-		add(optionsButton);
-		optionsButton.x = (FlxG.width / 2 - optionsButton.width) / 2;
-		optionsButton.y = 500;
+		//optionsButton = new FlxSprite();
+		//optionsButton.loadGraphic("assets/images/mainMenu/Instellingen.png");
+		//add(optionsButton);
+		//optionsButton.x = (FlxG.width / 2 - optionsButton.width) / 2;
+		//optionsButton.y = 500;
 		infoButton = new FlxSprite();
 		infoButton.loadGraphic("assets/images/mainMenu/Info.png");
 		add(infoButton);
@@ -46,7 +48,7 @@ class MenuState extends FlxState
 		
 		FlxG.plugins.add(new MouseEventManager());
 		MouseEventManager.add(startButton, startGame, null, mouseOver, mouseOut);
-		MouseEventManager.add(optionsButton, gotoOptions, null, mouseOver, mouseOut);
+		//MouseEventManager.add(optionsButton, gotoOptions, null, mouseOver, mouseOut);
 		MouseEventManager.add(infoButton, gotoInfoPage, null, mouseOver, mouseOut);
 		
 	}
@@ -72,7 +74,7 @@ class MenuState extends FlxState
 	 * @param	sprite
 	 */
 	function gotoInfoPage(sprite:FlxSprite) {
-		
+		Lib.getURL(new URLRequest("http://noord.kjrw.nl/info/"));
 	}
 	
 	function start() {
