@@ -40,7 +40,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		
 		pauseButton = new FlxSprite();
 		pauseButton.loadGraphic("assets/images/Pauze.png");
-		pauseButton.x = FlxG.stage.width - pauseButton.width - 10;
+		pauseButton.x = FlxG.width - pauseButton.width - 20;
 		pauseButton.y = 10;
 		pauseButton.scale.set(0.5, 0.5);
 		pauseButton.scrollFactor.set(0, 0);
