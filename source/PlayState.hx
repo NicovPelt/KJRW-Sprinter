@@ -12,6 +12,7 @@ import flixel.util.FlxMath;
 import flixel.FlxObject;
 import flixel.plugin.MouseEventManager;
 import flixel.util.FlxPoint;
+import haxe.Timer;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -22,7 +23,9 @@ class PlayState extends FlxState
 	private var level:Level;
 	public var player:FlxSprite;
 	public var phantom:FlxSprite; //used for collision. not visible
-	public var deathZone:Array<FlxObject>;
+	public var deathZone:Array<DeathZone>;
+	private var currentDeathZone:DeathZone;
+	public var endZone:FlxObject;
 	private var hud:HUD;
 	private var background:Background;
 	
@@ -35,10 +38,13 @@ class PlayState extends FlxState
 	public var currentCheckpoint:FlxPoint;
 	public var checkpoints:Array<Checkpoint>;
 	public var coins:FlxGroup;
-	//public var coins:Array<FlxSprite>;
+	
+	public var haveCoin:Bool = false;
+	public var atQuestion:Bool = false;
 	
 	private var jumpSound:FlxSound;
-	private var walkSound:FlxSound;	
+	private var walkSound:FlxSound;
+	private var defeatSound:FlxSound;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -50,14 +56,9 @@ class PlayState extends FlxState
 		background = new Background();
 		add(background);
 		
-		//FlxG.mouse.visible = false;
-		
 		checkpoints = new Array<Checkpoint>();
-		deathZone = new Array<FlxObject>();
-		//coins = new Array<FlxSprite>();
+		deathZone = new Array<DeathZone>();
 		coins = new FlxGroup();
-		
-		bgColor = 0xffaaaaaa;
 		
 		level = new Level("assets/data/level1.tmx");
 		
@@ -73,10 +74,11 @@ class PlayState extends FlxState
 		
 		jumpSound = FlxG.sound.load(AssetPaths.jump_sound__mp3);
 		walkSound = FlxG.sound.load(AssetPaths.step_sound__mp3);
+		defeatSound = FlxG.sound.load(AssetPaths.deafeat_tune1__mp3);
 		
 		player.animation.play("walk");
 		
-		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3);
+		FlxG.sound.playMusic(AssetPaths._12_Through_the_Forest__mp3, 0.5);
 		
 		hud = new HUD(0, lives);
 		add(hud);
@@ -94,6 +96,11 @@ class PlayState extends FlxState
 	private function pause(sprite:FlxSprite) {
 		paused = !paused;
 		hud.pause(paused);
+		if (paused) {
+			FlxG.sound.pause();
+		} else {
+			FlxG.sound.resume();
+		}
 	}
 
 	/**
@@ -101,7 +108,7 @@ class PlayState extends FlxState
 	 */
 	override public function update():Void
 	{
-		if (FlxG.keys.justPressed.P) {
+		if (FlxG.keys.justPressed.P || FlxG.keys.justPressed.ESCAPE) {
 			pause(hud.pauseButton);
 		}
 		
@@ -132,6 +139,11 @@ class PlayState extends FlxState
 				jumpReleased = true;
 			}
 			
+			if (haveCoin && atQuestion && FlxG.keys.justPressed.ENTER) {
+				//something should happen here to point the payer in the right direction
+				hud.removeCoin();
+			}
+			
 			if (phantom.velocity.x < phantom.maxVelocity.x) {//character moves forward
 				phantom.acceleration.x = phantom.maxVelocity.x * 4;
 			}
@@ -149,34 +161,56 @@ class PlayState extends FlxState
 			for(zone in deathZone){
 				if (FlxG.overlap(phantom, zone))//player has fallen outside of the level, dies
 				{
-					//FlxG.resetState();
-					if (hud.loseLife() == 0) {
-						//game over
-					} else {
-						phantom.x = currentCheckpoint.x;
-						phantom.y = currentCheckpoint.y;
-						
-					}
+					paused = !paused;
+					FlxG.sound.pause();
+					defeatSound.play();
+					currentDeathZone = zone;
+					Timer.delay(death, 3000);
 				}
+			}
+			
+			if (FlxG.overlap(phantom, endZone)) {
+				FlxG.sound.pause();
+				Main.victoryState = new VictoryState();
+				FlxG.switchState(Main.victoryState);
 			}
 			
 			FlxG.overlap(coins, phantom, getCoin);
 			
 			for (checkpoint in checkpoints) {
 				if (FlxG.overlap(phantom, checkpoint)) {
-					checkpoints.remove(checkpoint); //DANGEROUS!!!!! TEST THIS ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					atQuestion = !atQuestion;
+					checkpoints.remove(checkpoint); 
 					checkpoint.checkReached();
 					currentCheckpoint = new FlxPoint(checkpoint.x, checkpoint.y);
-					hud.checkpointReached(checkpoint.name);
+					hud.checkpointReached(checkpoint.name, haveCoin);
 					break;
 				}
 			}
 			player.x = phantom.x - 20;
 			player.y = phantom.y;
+		} else if(FlxG.keys.justPressed.SPACE) {
+			paused = !paused;
+			hud.removePause();
+			FlxG.sound.resume();
 		}
-	}	
+	}
+	
+	public function death() {
+		if (hud.loseLife() == 0) {
+			//game over
+			Main.gameOverState = new GameOverState();
+			FlxG.switchState(Main.gameOverState);
+		} else {
+			phantom.x = currentCheckpoint.x;
+			phantom.y = currentCheckpoint.y;
+			hud.whyDeath(currentDeathZone.name);
+		}
+	}
 	
 	public function getCoin(coin:FlxObject, player:FlxObject) {
 		coin.kill();
+		hud.getCoin();
+		haveCoin = true;
 	}
 }

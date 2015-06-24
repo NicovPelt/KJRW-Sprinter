@@ -1,36 +1,42 @@
 package;
 
-import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSprite;
 import flixel.FlxG;
-import flixel.text.FlxText;
+import flixel.system.FlxSound;
 
 /**
  * ...
  * @author Nico van Pelt
  */
-class IntroState extends FlxState
+class VictoryState extends FlxState
 {
-	
+
 	private var currentFrame:FlxSprite;
 	private var frameIndex:Int = 0;
+	private var victorySound:FlxSound;
 
-	public function new() 
+	override public function create():Void
 	{
-		super();
 		currentFrame = new FlxSprite();
 		add(currentFrame);
+		
+		victorySound = FlxG.sound.load(AssetPaths.victory_tune1__mp3);
+		
 		nextFrame();
+		
+		victorySound.play();
 	}
 	
 	private function nextFrame() {
 		frameIndex ++;
-		if (!(frameIndex > 7)) {
-			currentFrame.loadGraphic("assets/images/introComic/0" + frameIndex + ".png");
+		if (frameIndex <= 2) {
+			currentFrame.loadGraphic("assets/images/Good0" + frameIndex + ".png");
 		} else {
-			Main.playState = new PlayState();
-			FlxG.switchState(Main.playState);
+			Main.menuState = new MenuState();
+			FlxG.switchState(Main.menuState);
 		}
+		
 	}
 	
 	override public function update() {

@@ -1,17 +1,16 @@
 package;
 
-import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSprite;
 import flixel.FlxG;
-import flixel.text.FlxText;
 
 /**
  * ...
  * @author Nico van Pelt
  */
-class IntroState extends FlxState
+class GameOverState extends FlxState
 {
-	
+
 	private var currentFrame:FlxSprite;
 	private var frameIndex:Int = 0;
 
@@ -25,11 +24,11 @@ class IntroState extends FlxState
 	
 	private function nextFrame() {
 		frameIndex ++;
-		if (!(frameIndex > 7)) {
-			currentFrame.loadGraphic("assets/images/introComic/0" + frameIndex + ".png");
+		if (!(frameIndex > 2)) {
+			currentFrame.loadGraphic("assets/images/Bad0" + frameIndex + ".png");
 		} else {
-			Main.playState = new PlayState();
-			FlxG.switchState(Main.playState);
+			Main.menuState = new MenuState();
+			FlxG.switchState(Main.menuState);
 		}
 	}
 	
