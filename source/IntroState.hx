@@ -29,7 +29,7 @@ class IntroState extends FlxState
 			currentFrame.loadGraphic("assets/images/introComic/0" + frameIndex + ".png");
 		} else {
 			currentFrame.loadGraphic("assets/images/introComic/Loading.png");
-			Main.playState = new PlayState();
+			//Main.playState = new PlayState();
 			FlxG.switchState(Main.playState);
 		}
 	}

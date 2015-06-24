@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxPoint;
 import flixel.FlxG;
 import flixel.text.FlxText;
+import flixel.plugin.MouseEventManager;
 
 /**
  * ...
@@ -16,10 +17,13 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public var lives:Array<FlxSprite>;
 	public var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
-	private var tipScreen:FlxSprite;
+	//private var tipScreen:FlxSprite;
 	public var questionText:FlxText;
 	public var helpText:FlxText;
 	public var coin:FlxSprite;
+	public var tipman:FlxSprite;
+	public var muteSound:FlxSprite;
+	public var muteMusic:FlxSprite;
 
 	public function new(MaxSize:Int=0, startingLives:Int) 
 	{
@@ -49,20 +53,34 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		pauseScreen = new FlxSprite(0, 0, "assets/images/Pauze_scherm.png");
 		pauseScreen.scrollFactor.set(0, 0);
 		
+		muteMusic = new FlxSprite();
+		muteMusic.loadGraphic("assets/images/music_on.png");
+		muteMusic.x = FlxG.width - pauseButton.width - 90;
+		muteMusic.y = 10;
+		muteMusic.scrollFactor.set(0, 0);
+		muteSound = new FlxSprite();
+		muteSound.loadGraphic("assets/images/sound_on.png");
+		muteSound.x = FlxG.width - pauseButton.width - 160;
+		muteSound.y = 10;
+		muteSound.scrollFactor.set(0, 0);
+		
 		questionText = new FlxText(300, 100, 720);
 		questionText.setFormat(null, 32, 0xffffff, "center", FlxText.BORDER_OUTLINE);
 		questionText.scrollFactor.set(0, 0);
 		add(questionText);	
 		
-		tipScreen = new FlxSprite(-150, 180, "assets/images/clue_menu.png");
-		tipScreen.scale.set(0.4, 0.4);
-		tipScreen.scrollFactor.set(0, 0);
-		add(tipScreen);
+		//tipScreen = new FlxSprite(-150, 180, "assets/images/clue_menu.png");
+		//tipScreen.scale.set(0.4, 0.4);
+		//tipScreen.scrollFactor.set(0, 0);
+		//add(tipScreen);
 		
 		helpText = new FlxText(300, 600, 720);
 		helpText.setFormat(null, 20, 0xffffff, "center", FlxText.BORDER_OUTLINE);
 		helpText.scrollFactor.set(0, 0);
 		helpText.text += "Druk op 'Enter' voor hulp van de KJRW.";
+		
+		tipman = new FlxSprite(20, 570);
+		tipman.scrollFactor.set(0, 0);
 	}
 	
 	public function loseLife() {
@@ -81,13 +99,37 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public function pause(paused:Bool) {
 		if (paused) {
 			add(pauseScreen);
+			add(muteMusic);
+			add(muteSound);
 		} else {
 			remove(pauseScreen);
+			remove(muteMusic);
+			remove(muteSound);
 		}
 	}
 	
 	public function removePause() {
 		remove(pauseScreen);
+	}
+	
+	public function KJRWHulp(question:Int) {
+		switch(question) {
+			case 1:
+				helpText.text = "Je bent verplicht om 5 dagen per week naar school te gaan tot je 16 bent.";
+				tipman.loadGraphic("assets/images/TipmanUp.png");
+				add(tipman);
+			case 2:
+				helpText.text = "Een leerling kan van school af gestuurd worden als hij of zij zich vaak agresief gedraagt.";
+				tipman.loadGraphic("assets/images/TipmanDown.png");
+				add(tipman);
+			case 3:
+				helpText.text = "Als een leerling niet goed genoeg presteert kan besloten worden om hem of haar het jaar te laten overdoen.";
+				tipman.loadGraphic("assets/images/TipmanUp.png");
+				add(tipman);
+			default:
+				helpText.text = "Druk op 'Enter' voor hulp van de KJRW.";
+				
+		}
 	}
 	
 	/**
@@ -98,19 +140,26 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		switch(name) {
 			case "checkpoint1":
 				questionText.text = "Ik moet eigenlijk naar school gaan.";
-				if (hasCoin)
+				if (hasCoin) {
+					KJRWHulp(0);
 					add(helpText);
+				}
 			case "checkpoint2":
 				questionText.text = "Er zijn op school regels die ik moet volgen.";
-				if (hasCoin)
+				if (hasCoin) {
+					KJRWHulp(0);
 					add(helpText);
+				}
 			case "checkpoint3":
 				questionText.text = "Ik moet wel mijn best blijven doen, anders moet ik een groep blijven zitten.";
-				if (hasCoin)
+				if (hasCoin) {
+					KJRWHulp(0);
 					add(helpText);
+				}
 			default:
 				questionText.text = "Ja! Dat was de juiste keuze.";
 				remove(helpText);
+				remove(tipman);
 			
 		}
 		

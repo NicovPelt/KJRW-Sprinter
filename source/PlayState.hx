@@ -40,12 +40,15 @@ class PlayState extends FlxState
 	public var coins:FlxGroup;
 	
 	public var haveCoin:Bool = false;
-	public var atQuestion:Bool = false;
+	public var atQuestion:Int;
 	
 	private var jumpSound:FlxSound;
 	private var walkSound:FlxSound;
 	private var defeatSound:FlxSound;
 	private var pickupSound:FlxSound;
+	
+	public static var music:Bool = true;
+	public static var sound:Bool = true;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -85,6 +88,8 @@ class PlayState extends FlxState
 		hud = new HUD(0, lives);
 		add(hud);
 		MouseEventManager.add(hud.pauseButton, pause, null, null, null);
+		MouseEventManager.add(hud.muteSound, muteSound, null, null, null);
+		MouseEventManager.add(hud.muteMusic, muteMusic, null, null, null);
 	}
 	
 	/**
@@ -100,8 +105,30 @@ class PlayState extends FlxState
 		hud.pause(paused);
 		if (paused) {
 			FlxG.sound.pause();
-		} else {
+		} else if(music) {
 			FlxG.sound.resume();
+		}
+	}
+	
+	private function muteSound(sprite:FlxSprite) {
+		if (sound) {
+			sound = false;
+			hud.muteSound.loadGraphic("assets/images/sound_off.png");
+		} else {
+			sound = true;
+			hud.muteSound.loadGraphic("assets/images/sound_on.png");
+		}
+	}
+	
+	private function muteMusic(sprite:FlxSprite) {
+		if (music) {
+			music = false;
+			FlxG.sound.pause();
+			hud.muteMusic.loadGraphic("assets/images/music_off.png");
+		} else {
+			music = true;
+			FlxG.sound.resume();
+			hud.muteMusic.loadGraphic("assets/images/music_on.png");
 		}
 	}
 
@@ -122,7 +149,7 @@ class PlayState extends FlxState
 			{
 				player.animation.play ( "jump up" );
 				
-				jumpSound.play();
+				if(sound) jumpSound.play();
 				
 				airtime += FlxG.elapsed;
 				phantom.velocity.y = -phantom.maxVelocity.y - 100;
@@ -141,8 +168,9 @@ class PlayState extends FlxState
 				jumpReleased = true;
 			}
 			
-			if (haveCoin && atQuestion && FlxG.keys.justPressed.ENTER) {
-				//something should happen here to point the payer in the right direction
+			if (haveCoin && atQuestion > 0 && FlxG.keys.justPressed.ENTER) {
+				haveCoin = false;
+				hud.KJRWHulp(atQuestion);
 				hud.removeCoin();
 			}
 			
@@ -154,7 +182,7 @@ class PlayState extends FlxState
 			
 			if (level.collideWithPlatforms(phantom)) {//char touches platform
 				airtime = 0;
-				walkSound.play();
+				if(sound) walkSound.play();
 				player.animation.play ( "walk" );
 			} else if (!FlxG.keys.pressed.SPACE) {//player walks off of the platform
 				player.animation.play ( "jump down" );
@@ -165,7 +193,7 @@ class PlayState extends FlxState
 				{
 					paused = !paused;
 					FlxG.sound.pause();
-					defeatSound.play();
+					if(sound) defeatSound.play();
 					currentDeathZone = zone;
 					Timer.delay(death, 3000);
 				}
@@ -181,7 +209,16 @@ class PlayState extends FlxState
 			
 			for (checkpoint in checkpoints) {
 				if (FlxG.overlap(phantom, checkpoint)) {
-					atQuestion = !atQuestion;
+					switch(checkpoint.name) {
+						case "checkpoint1":
+							atQuestion = 1;
+						case "checkpoint2":
+							atQuestion = 2;
+						case "checkpoint3":
+							atQuestion = 3;
+						default:
+							atQuestion = 0;
+					}
 					checkpoints.remove(checkpoint); 
 					checkpoint.checkReached();
 					currentCheckpoint = new FlxPoint(checkpoint.x, checkpoint.y);

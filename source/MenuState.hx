@@ -51,6 +51,8 @@ class MenuState extends FlxState
 		//MouseEventManager.add(optionsButton, gotoOptions, null, mouseOver, mouseOut);
 		MouseEventManager.add(infoButton, gotoInfoPage, null, mouseOverInfo, mouseOutInfo);
 		
+		Main.playState = new PlayState();
+		
 	}
 	
 	/**
