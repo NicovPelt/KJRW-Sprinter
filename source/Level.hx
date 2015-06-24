@@ -115,7 +115,10 @@ class Level extends TiledMap
 				FlxG.camera.follow(phantom, FlxCamera.STYLE_PLATFORMER, new FlxPoint(-800,0), 3.5);
 				
 			case "death_zone":
-				var floor = new DeathZone(object.name, x, y+400, object.width, object.height);
+				if(object.name = "deathZone")
+					var floor = new DeathZone(object.name, x, y + 400, object.width, object.height);
+				else
+					var floor = new DeathZone(object.name, x, y, object.width, object.height);
 				state.deathZone.push(floor);
 				
 			case "victory":
