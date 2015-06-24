@@ -45,6 +45,7 @@ class PlayState extends FlxState
 	private var jumpSound:FlxSound;
 	private var walkSound:FlxSound;
 	private var defeatSound:FlxSound;
+	private var pickupSound:FlxSound;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -75,6 +76,7 @@ class PlayState extends FlxState
 		jumpSound = FlxG.sound.load(AssetPaths.jump_sound__mp3);
 		walkSound = FlxG.sound.load(AssetPaths.step_sound__mp3);
 		defeatSound = FlxG.sound.load(AssetPaths.deafeat_tune1__mp3);
+		pickupSound = FlxG.sound.load(AssetPaths.Pickup2__mp3);
 		
 		player.animation.play("walk");
 		
@@ -209,6 +211,7 @@ class PlayState extends FlxState
 	}
 	
 	public function getCoin(coin:FlxObject, player:FlxObject) {
+		pickupSound.play();
 		coin.kill();
 		hud.getCoin();
 		haveCoin = true;

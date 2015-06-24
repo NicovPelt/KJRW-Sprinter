@@ -47,9 +47,9 @@ class MenuState extends FlxState
 		infoButton.y = 300;
 		
 		FlxG.plugins.add(new MouseEventManager());
-		MouseEventManager.add(startButton, startGame, null, mouseOver, mouseOut);
+		MouseEventManager.add(startButton, startGame, null, mouseOverStart, mouseOutStart);
 		//MouseEventManager.add(optionsButton, gotoOptions, null, mouseOver, mouseOut);
-		MouseEventManager.add(infoButton, gotoInfoPage, null, mouseOver, mouseOut);
+		MouseEventManager.add(infoButton, gotoInfoPage, null, mouseOverInfo, mouseOutInfo);
 		
 	}
 	
@@ -58,6 +58,7 @@ class MenuState extends FlxState
 	 * @param	sprite
 	 */
 	function startGame(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Start Spel.png");
 		FlxG.cameras.fade(0xff000000, 1, false, start);
 	}
 	
@@ -74,6 +75,7 @@ class MenuState extends FlxState
 	 * @param	sprite
 	 */
 	function gotoInfoPage(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Info.png");
 		Lib.getURL(new URLRequest("http://noord.kjrw.nl/info/"));
 	}
 	
@@ -86,8 +88,8 @@ class MenuState extends FlxState
 	 * Change the button to it's hover-over sprite
 	 * @param	sprite
 	 */
-	function mouseOver(sprite:FlxSprite) {
-		
+	function mouseOverStart(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Mouse_Start Spel.png");
 	}
 	
 	/**
@@ -95,8 +97,26 @@ class MenuState extends FlxState
 	 * Change the button back to it's default sprite
 	 * @param	sprite
 	 */
-	function mouseOut(sprite:FlxSprite) {
-		
+	function mouseOutStart(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Start Spel.png");
+	}
+	
+	/**
+	 * Called when the cursor is hovered over any of the buttons
+	 * Change the button to it's hover-over sprite
+	 * @param	sprite
+	 */
+	function mouseOverInfo(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Mouse_Info.png");
+	}
+	
+	/**
+	 * Called when the cursor is removed from the button. 
+	 * Change the button back to it's default sprite
+	 * @param	sprite
+	 */
+	function mouseOutInfo(sprite:FlxSprite) {
+		sprite.loadGraphic("assets/images/mainMenu/Info.png");
 	}
 	
 	/**

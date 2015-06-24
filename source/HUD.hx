@@ -16,6 +16,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public var lives:Array<FlxSprite>;
 	public var pauseButton:FlxSprite;
 	private var pauseScreen:FlxSprite;
+	private var tipScreen:FlxSprite;
 	public var questionText:FlxText;
 	public var helpText:FlxText;
 	public var coin:FlxSprite;
@@ -52,6 +53,11 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		questionText.setFormat(null, 32, 0xffffff, "center", FlxText.BORDER_OUTLINE);
 		questionText.scrollFactor.set(0, 0);
 		add(questionText);	
+		
+		tipScreen = new FlxSprite(-150, 180, "assets/images/clue_menu.png");
+		tipScreen.scale.set(0.4, 0.4);
+		tipScreen.scrollFactor.set(0, 0);
+		add(tipScreen);
 		
 		helpText = new FlxText(300, 600, 720);
 		helpText.setFormat(null, 20, 0xffffff, "center", FlxText.BORDER_OUTLINE);
