@@ -82,6 +82,8 @@ class MenuState extends FlxState
 	}
 	
 	function start() {
+		MouseEventManager.remove(startButton);
+		MouseEventManager.remove(infoButton);
 		FlxG.switchState(new IntroState());
 	}
 	
