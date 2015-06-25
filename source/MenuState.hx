@@ -53,6 +53,8 @@ class MenuState extends FlxState
 		
 		Main.playState = new PlayState();
 		
+		FlxG.sound.playMusic(AssetPaths.menu_music02__mp3, 0.5);
+		
 	}
 	
 	/**
@@ -60,6 +62,7 @@ class MenuState extends FlxState
 	 * @param	sprite
 	 */
 	function startGame(sprite:FlxSprite) {
+		//FlxG.sound.pause();
 		sprite.loadGraphic("assets/images/mainMenu/Start Spel.png");
 		FlxG.cameras.fade(0xff000000, 1, false, start);
 	}
