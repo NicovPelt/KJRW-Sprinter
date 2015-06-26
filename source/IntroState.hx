@@ -6,7 +6,7 @@ import flixel.FlxG;
 import flixel.text.FlxText;
 
 /**
- * ...
+ * The game state that shows the comic before the game starts.
  * @author Nico van Pelt
  */
 class IntroState extends FlxState
@@ -23,6 +23,9 @@ class IntroState extends FlxState
 		nextFrame();
 	}
 	
+	/**
+	 * Puts the next frame of the comic on screen. If the last frame is reached, switches to the game.
+	 */
 	private function nextFrame() {
 		frameIndex ++;
 		if (!(frameIndex > 7)) {

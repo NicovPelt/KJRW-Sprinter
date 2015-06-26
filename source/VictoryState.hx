@@ -6,7 +6,7 @@ import flixel.FlxG;
 import flixel.system.FlxSound;
 
 /**
- * ...
+ * the game state that is used when a player reaches the end of the level.
  * @author Nico van Pelt
  */
 class VictoryState extends FlxState

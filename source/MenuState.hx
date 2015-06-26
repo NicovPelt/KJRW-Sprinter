@@ -9,7 +9,7 @@ import openfl.Lib;
 import openfl.net.URLRequest;
 
 /**
- * A FlxState which can be used for the game's menu.
+ * The game state for the main menu.
  */
 class MenuState extends FlxState
 {
@@ -19,9 +19,6 @@ class MenuState extends FlxState
 	var optionsButton:FlxSprite;
 	var infoButton:FlxSprite;
 	
-	/**
-	 * Function that is called up when to state is created to set it up. 
-	 */
 	override public function create():Void
 	{
 		super.create();
@@ -65,14 +62,6 @@ class MenuState extends FlxState
 		//FlxG.sound.pause();
 		sprite.loadGraphic("assets/images/mainMenu/Start Spel.png");
 		FlxG.cameras.fade(0xff000000, 1, false, start);
-	}
-	
-	/**
-	 * Called when the options button is clicked
-	 * @param	sprite
-	 */
-	function gotoOptions(sprite:FlxSprite) {
-		
 	}
 	
 	/**

@@ -15,7 +15,7 @@ import flixel.util.FlxPoint;
 import haxe.Timer;
 
 /**
- * A FlxState which can be used for the actual gameplay.
+ * The game state for the actual game.
  */
 class PlayState extends FlxState
 {
@@ -50,9 +50,6 @@ class PlayState extends FlxState
 	public static var music:Bool = true;
 	public static var sound:Bool = true;
 	
-	/**
-	 * Function that is called up when to state is created to set it up. 
-	 */
 	override public function create():Void
 	{
 		super.create();
@@ -92,14 +89,15 @@ class PlayState extends FlxState
 		MouseEventManager.add(hud.muteMusic, muteMusic, null, null, null);
 	}
 	
-	/**
-	 * Function that is called when this state is destroyed 
-	 */
 	override public function destroy():Void
 	{
 		super.destroy();
 	}
 	
+	/**
+	 * pause or unpause the game.
+	 * @param	sprite
+	 */
 	private function pause(sprite:FlxSprite) {
 		paused = !paused;
 		hud.pause(paused);
@@ -141,6 +139,7 @@ class PlayState extends FlxState
 			pause(hud.pauseButton);
 		}
 		
+		//if the game is paused, none of this should happen.
 		if (!paused) {
 			
 			background.move();
@@ -168,7 +167,7 @@ class PlayState extends FlxState
 				jumpReleased = true;
 			}
 			
-			if (haveCoin && atQuestion > 0 && FlxG.keys.justPressed.ENTER) {
+			if (haveCoin && atQuestion > 0 && FlxG.keys.justPressed.ENTER) { //use a coin to get a hint.
 				haveCoin = false;
 				hud.KJRWHulp(atQuestion);
 				hud.removeCoin();
@@ -199,16 +198,16 @@ class PlayState extends FlxState
 				}
 			}
 			
-			if (FlxG.overlap(phantom, endZone)) {
+			if (FlxG.overlap(phantom, endZone)) {//player reached the end of the level
 				FlxG.sound.pause();
 				Main.victoryState = new VictoryState();
 				FlxG.switchState(Main.victoryState);
 			}
 			
-			FlxG.overlap(coins, phantom, getCoin);
+			FlxG.overlap(coins, phantom, getCoin);// player grabs a coin
 			
 			for (checkpoint in checkpoints) {
-				if (FlxG.overlap(phantom, checkpoint)) {
+				if (FlxG.overlap(phantom, checkpoint)) {//player has reached a checkpoint, which sets in motion other actions like showing or removing a question on screen.
 					switch(checkpoint.name) {
 						case "checkpoint1":
 							atQuestion = 1;
@@ -228,13 +227,16 @@ class PlayState extends FlxState
 			}
 			player.x = phantom.x - 20;
 			player.y = phantom.y;
-		} else if(FlxG.keys.justPressed.SPACE) {
+		} else if(FlxG.keys.justPressed.SPACE) {//unpause the game.
 			paused = !paused;
 			hud.removePause();
 			FlxG.sound.resume();
 		}
 	}
 	
+	/**
+	 * substract one life and go to game over state if al lives are gone.
+	 */
 	public function death() {
 		if (hud.loseLife() == 0) {
 			//game over

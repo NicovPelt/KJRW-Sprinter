@@ -15,7 +15,7 @@ import haxe.io.Path;
 import flixel.system.debug.Log;
 
 /**
- * ...
+ * This class prepairs the level using the .tmx file outputed by Tiled.
  * @author Nico van Pelt
  */
 class Level extends TiledMap
@@ -85,6 +85,12 @@ class Level extends TiledMap
 		}
 	}
 	
+	/**
+	 * Called by loadObjects to prepair the single objects for the level.
+	 * @param	object
+	 * @param	group
+	 * @param	state
+	 */
 	private function loadObject(object:TiledObject, group:TiledObjectGroup, state:PlayState) {
 		var x:Int = object.x;
 		var y:Int = object.y;
@@ -142,6 +148,13 @@ class Level extends TiledMap
 		}
 	}
 	
+	/**
+	 * Checks whether the player is standing on a platform and makes sure they colide so it doesn't fall through.
+	 * @param	obj
+	 * @param	notifyCallback
+	 * @param	processCallback
+	 * @return
+	 */
 	public function collideWithPlatforms(obj:FlxObject, ?notifyCallback:FlxObject->FlxObject->Void, ?processCallback:FlxObject->FlxObject->Bool):Bool
 	{
 		if (collidableTileLayers != null)

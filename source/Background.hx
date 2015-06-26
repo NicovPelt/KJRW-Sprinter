@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxTypedGroup;
 
 /**
- * ...
+ * This class contains and moves all the seperate pieces that make up the background shown during the game.
  * @author Nico van Pelt
  */
 class Background extends FlxTypedGroup<FlxSprite>
@@ -44,6 +44,9 @@ class Background extends FlxTypedGroup<FlxSprite>
 		add(clouds);
 	}
 	
+	/**
+	 * moves all the pieces individualy, some faster/more often than others.
+	 */
 	public function move() {
 		counter ++;
 		if (counter % 3 == 0) {

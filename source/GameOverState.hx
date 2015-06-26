@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 /**
- * ...
+ * The game state that is used when the player has lost all of their lives. Shows a short commic.
  * @author Nico van Pelt
  */
 class GameOverState extends FlxState
@@ -22,6 +22,9 @@ class GameOverState extends FlxState
 		nextFrame();
 	}
 	
+	/**
+	 * Puts the next frame of the comic on screen. If the last frame is reached, switches back to the main menu.
+	 */
 	private function nextFrame() {
 		frameIndex ++;
 		if (!(frameIndex > 2)) {

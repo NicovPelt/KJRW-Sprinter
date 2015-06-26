@@ -3,7 +3,7 @@ package;
 import flixel.FlxSprite;
 
 /**
- * ...
+ * A simple extention of the default sprite class in order to give it a name that can be referenced.
  * @author Nico van Pelt
  */
 class Checkpoint extends FlxSprite
@@ -17,6 +17,9 @@ class Checkpoint extends FlxSprite
 		
 	}
 	
+	/**
+	 * Changes the graphic of the checkpoint to indicate that the player has reached it.
+	 */
 	public function checkReached() {
 		loadGraphic("assets/images/checkpoint2.png");
 	}

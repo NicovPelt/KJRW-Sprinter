@@ -8,7 +8,8 @@ import flixel.text.FlxText;
 import flixel.plugin.MouseEventManager;
 
 /**
- * ...
+ * A class containing all the elements of the HUD in the game. 
+ * This makes it easier to keep track of everything that needs to move relative to the in game camera.
  * @author Nico van Pelt
  */
 class HUD extends FlxTypedGroup<FlxSprite>
@@ -83,19 +84,32 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		tipman.scrollFactor.set(0, 0);
 	}
 	
+	/**
+	 * substract 1 life and return the amount left.
+	 */
 	public function loseLife() {
 		remove(lives.pop());
 		return lives.length;
 	}
 	
+	/**
+	 * Show a coin on screen to indicate it has been picked up.
+	 */
 	public function getCoin() {
 		add(coin);
 	}
 	
+	/**
+	 * remove the coin in the HUD.
+	 */
 	public function removeCoin() {
 		remove(coin);
 	}
 	
+	/**
+	 * displays or removes the pause screen from the HUD
+	 * @param	paused
+	 */
 	public function pause(paused:Bool) {
 		if (paused) {
 			add(pauseScreen);
@@ -112,6 +126,10 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		remove(pauseScreen);
 	}
 	
+	/**
+	 * Displays the appropriate hint in screen when a player uses a coin.
+	 * @param	question
+	 */
 	public function KJRWHulp(question:Int) {
 		switch(question) {
 			case 1:
@@ -166,6 +184,10 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		questionText.x = (FlxG.stage.stageWidth - questionText.width) / 2;
 	}
 	
+	/**
+	 * Shows the text on screen explaining why the player died if they chose the wrong path.
+	 * @param	reason
+	 */
 	public function whyDeath(reason:String) {
 		//Show text on screen that explains the mistake if the cause of death was a wrongly answered question
 		if (reason == "wrong1") {
